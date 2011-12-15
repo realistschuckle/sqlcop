@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5F3A831C-BB83-4BB6-B16F-C588FB756BD4}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>sqlcop</RootNamespace>
+    <AssemblyName>sqlcop</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="mkdir -p Generated" workingdir="${ProjectDir}" />
+        <Command type="BeforeBuild" command="mono ../libs/gppg/binaries/Gplex.exe /out:Generated/lexer.cs lexer.l" workingdir="${ProjectDir}" />
+        <Command type="BeforeBuild" command="mono ../libs/gppg/binaries/gppg.exe /gplex /out:Generated/parser.cs parser.y" workingdir="${ProjectDir}" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="mkdir -p Generated" workingdir="${ProjectDir}" />
+        <Command type="BeforeBuild" command="mono ../libs/gppg/binaries/Gplex.exe /out:Generated/lexer.cs lexer.l" workingdir="${ProjectDir}" />
+        <Command type="BeforeBuild" command="mono ../libs/gppg/binaries/gppg.exe /gplex /out:Generated/parser.cs parser.y" workingdir="${ProjectDir}" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="QUT.ShiftReduceParser">
+      <HintPath>..\libs\gppg\binaries\QUT.ShiftReduceParser.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="MainWindow.cs" />
+    <Compile Include="Generated\lexer.cs" />
+    <Compile Include="Generated\parser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lexer.l" />
+    <None Include="parser.y" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Generated\" />
+  </ItemGroup>
+</Project>

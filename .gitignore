@@ -1,0 +1,10 @@
+Generated
+*.pidb
+*.lst
+*.userprefs
+bin
+obj
+.DS_Store
+*.suo
+
+test-results
