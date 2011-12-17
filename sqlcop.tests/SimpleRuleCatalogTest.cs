@@ -11,6 +11,14 @@ namespace sqlcop.tests
 	public class SimpleRuleCatalogTest
 	{
 		[Test]
+		public void SimpleRuleCatalog_Implements_ICatalogRules()
+		{
+			Type type = typeof(SimpleRuleCatalog);
+			Type iface = typeof(ICatalogRules);
+			Assert.That(iface.IsAssignableFrom(type));
+		}
+		
+		[Test]
 		public void New_Catalog_Has_No_Active_Rules()
 		{
 			Assert.That(_catalog.ActiveRules.Count(), Is.EqualTo(0));
