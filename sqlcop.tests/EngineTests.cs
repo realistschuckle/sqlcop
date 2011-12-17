@@ -81,44 +81,16 @@ namespace sqlcop.tests
 		}
 		
 		[Test]
-		public void Run_Does_Not_Call_RuleCatalog_ActiveRules_When_Parsing_Fails()
-		{
-			CreateEngine();
-			_engine.Run("SELECT me FROM there");
-			_catalog.AssertWasNotCalled(c => c.ActiveRules);
-		}
-		
-		[Test]
-		public void Run_Calls_RuleCatalog_ActiveRules_When_Parsing_Succeeds()
+		public void Run_Calls_Catalog_ApplyActiveRules()
 		{
 			CreateEngineAndSuccessfulParsers();
 			_engine.Run("SELECT me FROM there");
-			_catalog.AssertWasCalled(c => c.ActiveRules);
+			_catalog.AssertWasCalled(c => c.ApplyActiveRules(_parseResult1));
+			_catalog.AssertWasCalled(c => c.ApplyActiveRules(_parseResult2));
 		}
 		
 		[Test]
-		public void Run_Calls_Judge_On_Each_Active_Rule_With_All_Results()
-		{
-			CreateEngineAndSuccessfulParsers();
-			_engine.Run("SELECT me FROM there");
-			_rule1.AssertWasCalled(r => r.Judge(_parseResult1));
-			_rule1.AssertWasCalled(r => r.Judge(_parseResult2));
-			_rule2.AssertWasCalled(r => r.Judge(_parseResult1));
-			_rule2.AssertWasCalled(r => r.Judge(_parseResult2));
-		}
-		
-		[Test]
-		public void Run_Ignores_Null_Result_From_Rule_Judge()
-		{
-			CreateEngineAndSuccessfulParsers();
-			_rule1.Stub(r => r.Judge(null))
-				  .IgnoreArguments()
-				  .Return(null);
-			_engine.Run("SELECT me FROM there");
-		}
-		
-		[Test]
-		public void Run_Returns_Combined_Results_From_Rule_Judge()
+		public void Run_Returns_Combined_Results_From_Catalog_ApplyActiveRules()
 		{
 			CreateEngineAndSuccessfulParsers();
 
@@ -131,12 +103,12 @@ namespace sqlcop.tests
 			List<IDescribeSqlProblem> rule2Problems;
 			rule2Problems = new List<IDescribeSqlProblem> { problem2 };
 			
-			_rule1.Stub(r => r.Judge(_parseResult1))
-				  .Return(rule1Problems)
-				  .Repeat.Any();
-			_rule2.Stub(r => r.Judge(_parseResult2))
-				  .Return(rule2Problems)
-				  .Repeat.Any();
+			_catalog.Stub(c => c.ApplyActiveRules(_parseResult1))
+					.Return(rule1Problems)
+					.Repeat.Any();
+			_catalog.Stub(c => c.ApplyActiveRules(_parseResult2))
+					.Return(rule2Problems)
+					.Repeat.Any();
 			
 			IEnumerable<IDescribeSqlProblem> problems;
 			problems = _engine.Run("SELECT me FROM there");

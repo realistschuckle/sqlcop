@@ -35,18 +35,10 @@ namespace sqlcop.engine
 			foreach(IParseSql parser in _parsers)
 			{
 				IDescribeSql sqlDescription = parser.Parse(sql);
-				if(sqlDescription == null)
+				IEnumerable<IDescribeSqlProblem> ruleResults;
+				ruleResults = _rules.ApplyActiveRules(sqlDescription);
+				if(ruleResults != null)
 				{
-					continue;
-				}
-				foreach(IJudgeSql rule in _rules.ActiveRules)
-				{
-					IEnumerable<IDescribeSqlProblem> ruleResults;
-					ruleResults = rule.Judge(sqlDescription);
-					if(ruleResults == null)
-					{
-						continue;
-					}
 					results.AddRange(ruleResults);
 				}
 			}

@@ -198,7 +198,7 @@ namespace sqlcop.tests
 		public void AddActive_With_Two_Discrete_Rules_With_The_Same_CanonicalName_Raises_DuplicateCanonicalNameException()
 		{
 			_catalog.AddActive(_rule1);
-			TestDelegate td = () => _catalog.AddActive(_rule2);
+			TestDelegate td = () => _catalog.AddActive(_rule1Duplicate);
 			DuplicateCanonicalNameException ex;
 			ex = Assert.Throws<DuplicateCanonicalNameException>(td);
 			Assert.That(ex.DuplicateName, Is.EqualTo(_ruleName));
@@ -208,31 +208,107 @@ namespace sqlcop.tests
 		public void AddInactive_With_Two_Discrete_Rules_With_The_Same_CanonicalName_Raises_DuplicateCanonicalNameException()
 		{
 			_catalog.AddInactive(_rule1);
-			TestDelegate td = () => _catalog.AddInactive(_rule2);
+			TestDelegate td = () => _catalog.AddInactive(_rule1Duplicate);
 			DuplicateCanonicalNameException ex;
 			ex = Assert.Throws<DuplicateCanonicalNameException>(td);
 			Assert.That(ex.DuplicateName, Is.EqualTo(_ruleName));
 		}
 		
+		[Test]
+		public void ApplyActiveRules_Returns_Empty_Enumerable_For_Null_Parameter()
+		{
+			IEnumerable<IDescribeSqlProblem> problems;
+			problems = _catalog.ApplyActiveRules(null);
+			Assert.That(problems, Is.Not.Null);
+			Assert.That(problems.Count(), Is.EqualTo(0));
+		}
+		
+		[Test]
+		public void ApplyActiveRules_Calls_Judge_On_Active_Rules()
+		{
+			_catalog.AddInactive(_rule1);
+			_catalog.AddActive(_rule2);
+			_catalog.ApplyActiveRules(_sql);
+			_rule1.AssertWasNotCalled(r => r.Judge(_sql));
+			_rule2.AssertWasCalled(r => r.Judge(_sql));
+		}
+		
+		[Test]
+		public void ApplyActiveRules_Returns_Combined_Results_From_Rule_Judge()
+		{
+			IDescribeSqlProblem problem1, problem2;
+			problem1 = MockRepository.GenerateMock<IDescribeSqlProblem>();
+			problem2 = MockRepository.GenerateMock<IDescribeSqlProblem>();
+			
+			List<IDescribeSqlProblem> rule1Problems;
+			rule1Problems = new List<IDescribeSqlProblem> { problem1 };
+			List<IDescribeSqlProblem> rule2Problems;
+			rule2Problems = new List<IDescribeSqlProblem> { problem2 };
+
+			_rule1.Stub(r => r.Judge(_sql))
+				  .Return(rule1Problems);
+			_rule2.Stub(r => r.Judge(_sql))
+				  .Return(rule2Problems);
+			
+			_catalog.AddActive(_rule1);
+			_catalog.AddActive(_rule2);
+			
+			IEnumerable<IDescribeSqlProblem> problems;
+			problems = _catalog.ApplyActiveRules(_sql);
+			Assert.That(problems.Count(), Is.EqualTo(2));
+			Assert.That(problems, Has.Member(problem1));
+			Assert.That(problems, Has.Member(problem2));
+		}
+		
+		[Test]
+		public void ApplyActiveRules_Ignores_null_Results_From_Rule_Judge()
+		{
+			IDescribeSqlProblem problem2;
+			problem2 = MockRepository.GenerateMock<IDescribeSqlProblem>();
+			
+			List<IDescribeSqlProblem> rule2Problems;
+			rule2Problems = new List<IDescribeSqlProblem> { problem2 };
+
+			_rule1.Stub(r => r.Judge(_sql))
+				  .Return(null);
+			_rule2.Stub(r => r.Judge(_sql))
+				  .Return(rule2Problems);
+			
+			_catalog.AddActive(_rule1);
+			_catalog.AddActive(_rule2);
+			
+			IEnumerable<IDescribeSqlProblem> problems;
+			problems = _catalog.ApplyActiveRules(_sql);
+			Assert.That(problems.Count(), Is.EqualTo(1));
+			Assert.That(problems, Has.Member(problem2));
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
+			_sql = MockRepository.GenerateMock<IDescribeSql>();
 			_ruleName = "My Awesome Rule!";
 			_rule1 = MockRepository.GenerateMock<IJudgeSql>();
 			_rule2 = MockRepository.GenerateMock<IJudgeSql>();
+			_rule1Duplicate = MockRepository.GenerateMock<IJudgeSql>();
 			_rule1.Stub(r => r.CanonicalName)
 				  .Return(_ruleName)
 				  .Repeat.Any();
 			_rule2.Stub(r => r.CanonicalName)
-				  .Return(_ruleName)
+				  .Return("My Other Awesome Rule!")
 				  .Repeat.Any();
+			_rule1Duplicate.Stub(r => r.CanonicalName)
+						   .Return(_ruleName)
+						   .Repeat.Any();
 			_catalog = new SimpleRuleCatalog();
 		}
 		
 		private string _ruleName;
 		private SimpleRuleCatalog _catalog;
 		private IJudgeSql _rule1;
+		private IJudgeSql _rule1Duplicate;
 		private IJudgeSql _rule2;
+		private IDescribeSql _sql;
 	}
 }
 
