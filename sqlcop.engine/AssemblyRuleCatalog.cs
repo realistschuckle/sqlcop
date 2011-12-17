@@ -14,16 +14,13 @@ namespace sqlcop.engine
 		public void AddAssembly(string assemblyString)
 		{
 			Assembly a = Assembly.Load(assemblyString);
-			foreach(Type type in a.GetExportedTypes())
-			{
-				if(type.IsClass && typeof(IJudgeSql).IsAssignableFrom(type))
-				{
-					object o = type.GetConstructor(Type.EmptyTypes)
-								   .Invoke(null);
-					IJudgeSql rule = (IJudgeSql) o;
-					_catalog.AddActive(rule);
-				}
-			}
+			LoadTypesFromAssembly(a);
+		}
+		
+		public void AddAssemblyFrom(string assemblyFile)
+		{
+			Assembly a = Assembly.LoadFrom(assemblyFile);
+			LoadTypesFromAssembly(a);
 		}
 
 		public IEnumerable<IDescribeSqlProblem> ApplyActiveRules(IDescribeSql sql)
@@ -43,25 +40,30 @@ namespace sqlcop.engine
 
 		public IEnumerable<IJudgeSql> ActiveRules
 		{
-			get
-			{
-				return _catalog.ActiveRules;
-			}
+			get { return _catalog.ActiveRules; }
 		}
 
 		public IEnumerable<IJudgeSql> Rules
 		{
-			get
-			{
-				return _catalog.Rules;
-			}
+			get { return _catalog.Rules; }
 		}
 
 		public IEnumerable<IJudgeSql> InactiveRules
 		{
-			get
+			get { return _catalog.InactiveRules; }
+		}
+		
+		private void LoadTypesFromAssembly(Assembly a)
+		{
+			foreach(Type type in a.GetExportedTypes())
 			{
-				return _catalog.InactiveRules;
+				if(type.IsClass && typeof(IJudgeSql).IsAssignableFrom(type))
+				{
+					object o = type.GetConstructor(Type.EmptyTypes)
+								   .Invoke(null);
+					IJudgeSql rule = (IJudgeSql) o;
+					_catalog.AddActive(rule);
+				}
 			}
 		}
 		

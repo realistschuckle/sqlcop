@@ -39,6 +39,49 @@ namespace sqlcop.tests
 		}
 		
 		[Test]
+		public void AddAssembly_Adds_Contained_Rules_To_ActiveRules()
+		{
+			_catalog.AddAssembly(GetType().Assembly.GetName().Name);
+			Assert.That(_catalog.Rules.Count(), Is.EqualTo(1));
+			Assert.That(_catalog.ActiveRules.Count(), Is.EqualTo(1));
+			Assert.That(_catalog.InactiveRules.Count(), Is.EqualTo(0));
+			
+			IJudgeSql rule = _catalog.ActiveRules.First();
+			Assert.That(rule, Is.InstanceOf(typeof(StubbedRule)));
+		}
+		
+		[Test]
+		public void AddAssemblyFrom_Raises_ArgumentNullException_For_Null_Parameter()
+		{
+			TestDelegate td = () => _catalog.AddAssemblyFrom(null);
+			ArgumentNullException ex;
+			ex = Assert.Throws<ArgumentNullException>(td);
+			Assert.That(ex.ParamName, Is.EqualTo("assemblyFile"));
+		}
+		
+		[Test]
+		public void AddAssemblyFrom_Raises_FileNotFoundException_For_Unfindable_Assembly_Name()
+		{
+			string fileName = "/tmp/i.do.not.exist";
+			TestDelegate td = () => _catalog.AddAssemblyFrom(fileName);
+			FileNotFoundException ex;
+			ex = Assert.Throws<FileNotFoundException>(td);
+			Assert.That(ex.FileName, Is.EqualTo(fileName));
+		}
+		
+		[Test]
+		public void AddAssemblyFrom_Adds_Contained_Rules_To_ActiveRules()
+		{
+			_catalog.AddAssemblyFrom(GetType().Assembly.Location);
+			Assert.That(_catalog.Rules.Count(), Is.EqualTo(1));
+			Assert.That(_catalog.ActiveRules.Count(), Is.EqualTo(1));
+			Assert.That(_catalog.InactiveRules.Count(), Is.EqualTo(0));
+			
+			IJudgeSql rule = _catalog.ActiveRules.First();
+			Assert.That(rule, Is.InstanceOf(typeof(StubbedRule)));
+		}
+		
+		[Test]
 		public void New_Catalog_Has_No_Rules()
 		{
 			Assert.That(_catalog.Rules.Count(), Is.EqualTo(0));
@@ -54,18 +97,6 @@ namespace sqlcop.tests
 		public void New_Catalog_Has_No_InactiveRules()
 		{
 			Assert.That(_catalog.InactiveRules.Count(), Is.EqualTo(0));
-		}
-		
-		[Test]
-		public void AddAssembly_Adds_Contained_Rules_To_ActiveRules()
-		{
-			_catalog.AddAssembly(GetType().Assembly.GetName().Name);
-			Assert.That(_catalog.Rules.Count(), Is.EqualTo(1));
-			Assert.That(_catalog.ActiveRules.Count(), Is.EqualTo(1));
-			Assert.That(_catalog.InactiveRules.Count(), Is.EqualTo(0));
-			
-			IJudgeSql rule = _catalog.ActiveRules.First();
-			Assert.That(rule, Is.InstanceOf(typeof(StubbedRule)));
 		}
 		
 		[Test]

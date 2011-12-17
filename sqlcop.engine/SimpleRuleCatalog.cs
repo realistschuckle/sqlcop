@@ -55,26 +55,17 @@ namespace sqlcop.engine
 
 		public IEnumerable<IJudgeSql> ActiveRules
 		{
-			get
-			{
-				return _activeRules;
-			}
+			get { return _activeRules; }
 		}
 
 		public IEnumerable<IJudgeSql> Rules
 		{
-			get
-			{
-				return _activeRules.Concat(_inactiveRules);
-			}
+			get { return _activeRules.Concat(_inactiveRules); }
 		}
 
 		public IEnumerable<IJudgeSql> InactiveRules
 		{
-			get
-			{
-				return _inactiveRules;
-			}
+			get { return _inactiveRules; }
 		}
 		
 		private void MoveRule(string canonicalName, List<IJudgeSql> source)
