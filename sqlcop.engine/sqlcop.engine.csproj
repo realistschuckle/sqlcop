@@ -43,6 +43,7 @@
     <Compile Include="BadSqlException.cs" />
     <Compile Include="AbstractSqlJudge.cs" />
     <Compile Include="SimpleRuleCatalog.cs" />
+    <Compile Include="DuplicateCanonicalNameException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

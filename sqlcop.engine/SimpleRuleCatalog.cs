@@ -18,15 +18,46 @@ namespace sqlcop.engine
 			{
 				throw new ArgumentNullException("rule");
 			}
-			_activeRules.Add(rule);
+			_inactiveRules.RemoveAll(r => r.CanonicalName == rule.CanonicalName);
+			IEnumerable<IJudgeSql> found;
+			found = _activeRules.Where(r => r.CanonicalName == rule.CanonicalName);
+			if(found.Count() > 0 && found.Any(r => !r.Equals(rule)))
+			{
+				throw new DuplicateCanonicalNameException(rule.CanonicalName);
+			}
+			else if(found.Count() == 0)
+			{
+				_activeRules.Add(rule);
+			}
 		}
 		
-		public void Deactivate(IJudgeSql rule)
+		public void AddInactive(IJudgeSql rule)
 		{
-			if(_activeRules.Remove(rule))
+			if(rule == null)
+			{
+				throw new ArgumentNullException("rule");
+			}
+			_activeRules.RemoveAll(r => r.CanonicalName == rule.CanonicalName);
+			IEnumerable<IJudgeSql> found;
+			found = _inactiveRules.Where(r => r.CanonicalName == rule.CanonicalName);
+			if(found.Count() > 0 && found.Any(r => !r.Equals(rule)))
+			{
+				throw new DuplicateCanonicalNameException(rule.CanonicalName);
+			}
+			else if(found.Count() == 0)
 			{
 				_inactiveRules.Add(rule);
 			}
+		}
+		
+		public void Activate(string canonicalName)
+		{
+			MoveRule(canonicalName, _inactiveRules, _activeRules);
+		}
+		
+		public void Deactivate(string canonicalName)
+		{
+			MoveRule(canonicalName, _activeRules, _inactiveRules);
 		}
 
 		public IEnumerable<IJudgeSql> ActiveRules
@@ -50,6 +81,22 @@ namespace sqlcop.engine
 			get
 			{
 				return _inactiveRules;
+			}
+		}
+		
+		private static void MoveRule(string canonicalName, List<IJudgeSql> source, List<IJudgeSql> target)
+		{
+			if(canonicalName == null)
+			{
+				throw new ArgumentNullException("canonicalName");
+			}
+			IJudgeSql rule;
+			rule = source.Where(r => r.CanonicalName == canonicalName)
+						 .FirstOrDefault();
+			if(rule != null)
+			{
+				source.RemoveAll(m => m == rule);
+				target.Add(rule);
 			}
 		}
 
