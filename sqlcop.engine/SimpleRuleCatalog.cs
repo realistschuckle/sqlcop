@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace sqlcop.engine
 {
@@ -7,23 +8,52 @@ namespace sqlcop.engine
 	{
 		public SimpleRuleCatalog()
 		{
+			_activeRules = new List<IJudgeSql>();
+			_inactiveRules = new List<IJudgeSql>();
 		}
 
-		public void Add(IJudgeSql rule)
+		public void AddActive(IJudgeSql rule)
 		{
 			if(rule == null)
 			{
 				throw new ArgumentNullException("rule");
 			}
-			throw new NotImplementedException();
+			_activeRules.Add(rule);
+		}
+		
+		public void Deactivate(IJudgeSql rule)
+		{
+			if(_activeRules.Remove(rule))
+			{
+				_inactiveRules.Add(rule);
+			}
 		}
 
 		public IEnumerable<IJudgeSql> ActiveRules
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _activeRules;
 			}
 		}
+
+		public IEnumerable<IJudgeSql> Rules
+		{
+			get
+			{
+				return _activeRules.Concat(_inactiveRules);
+			}
+		}
+
+		public IEnumerable<IJudgeSql> InactiveRules
+		{
+			get
+			{
+				return _inactiveRules;
+			}
+		}
+
+		private List<IJudgeSql> _activeRules;
+		private List<IJudgeSql> _inactiveRules;
 	}
 }
