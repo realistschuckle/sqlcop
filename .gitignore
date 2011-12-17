@@ -8,3 +8,5 @@ obj
 *.suo
 
 test-results
+TestResult.xml
+*.VisualState.xml

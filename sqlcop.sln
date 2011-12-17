@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sqlcop", "sqlcop\sqlcop.csproj", "{5F3A831C-BB83-4BB6-B16F-C588FB756BD4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sqlcop.engine", "sqlcop.engine\sqlcop.engine.csproj", "{2C4A8F09-B706-4F2C-8EA9-9B98B2FCCE30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sqlcop.tests", "sqlcop.tests\sqlcop.tests.csproj", "{47B96E06-7FCD-4FA9-891E-7743AC47AFCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +11,48 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5F3A831C-BB83-4BB6-B16F-C588FB756BD4}.Debug|x86.ActiveCfg = Debug|x86
-		{5F3A831C-BB83-4BB6-B16F-C588FB756BD4}.Debug|x86.Build.0 = Debug|x86
-		{5F3A831C-BB83-4BB6-B16F-C588FB756BD4}.Release|x86.ActiveCfg = Release|x86
-		{5F3A831C-BB83-4BB6-B16F-C588FB756BD4}.Release|x86.Build.0 = Release|x86
+		{2C4A8F09-B706-4F2C-8EA9-9B98B2FCCE30}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2C4A8F09-B706-4F2C-8EA9-9B98B2FCCE30}.Debug|x86.Build.0 = Debug|Any CPU
+		{2C4A8F09-B706-4F2C-8EA9-9B98B2FCCE30}.Release|x86.ActiveCfg = Release|Any CPU
+		{2C4A8F09-B706-4F2C-8EA9-9B98B2FCCE30}.Release|x86.Build.0 = Release|Any CPU
+		{47B96E06-7FCD-4FA9-891E-7743AC47AFCC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{47B96E06-7FCD-4FA9-891E-7743AC47AFCC}.Debug|x86.Build.0 = Debug|Any CPU
+		{47B96E06-7FCD-4FA9-891E-7743AC47AFCC}.Release|x86.ActiveCfg = Release|Any CPU
+		{47B96E06-7FCD-4FA9-891E-7743AC47AFCC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = sqlcop\sqlcop.csproj
+		StartupItem = sqlcop.engine\sqlcop.engine.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.TextStylePolicy = $2
+		$2.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.BeforeMethodDeclarationParentheses = False
+		$3.BeforeMethodCallParentheses = False
+		$3.BeforeConstructorDeclarationParentheses = False
+		$3.BeforeIndexerDeclarationBracket = False
+		$3.BeforeDelegateDeclarationParentheses = False
+		$3.NewParentheses = False
+		$3.IfParentheses = False
+		$3.WhileParentheses = False
+		$3.ForParentheses = False
+		$3.ForeachParentheses = False
+		$3.CatchParentheses = False
+		$3.SwitchParentheses = False
+		$3.LockParentheses = False
+		$3.UsingParentheses = False
+		$3.SpacesBeforeBrackets = False
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/x-csharp
+		$3.scope = text/x-csharp
+		$0.TextStylePolicy = $4
+		$4.FileWidth = 78
+		$4.TabWidth = 4
+		$4.inheritsSet = Mono
+		$4.inheritsScope = text/plain
+		$4.scope = text/plain
 	EndGlobalSection
 EndGlobal
