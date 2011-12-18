@@ -43,6 +43,7 @@
     <Compile Include="AbstractSqlJudgeTests.cs" />
     <Compile Include="SimpleRuleCatalogTest.cs" />
     <Compile Include="AssemblyRuleCatalogTests.cs" />
+    <Compile Include="DirectoryRuleCatalogTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

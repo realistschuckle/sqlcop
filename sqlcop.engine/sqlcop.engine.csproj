@@ -45,6 +45,7 @@
     <Compile Include="SimpleRuleCatalog.cs" />
     <Compile Include="DuplicateCanonicalNameException.cs" />
     <Compile Include="AssemblyRuleCatalog.cs" />
+    <Compile Include="DirectoryRuleCatalog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
