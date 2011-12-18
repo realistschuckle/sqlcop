@@ -4,13 +4,8 @@ using System.Reflection;
 
 namespace sqlcop.engine
 {
-	public class AssemblyRuleCatalog : ICatalogRules
+	public class AssemblyRuleCatalog : BaseProxyCatalog
 	{
-		public AssemblyRuleCatalog()
-		{
-			_catalog = new SimpleRuleCatalog();
-		}
-		
 		public void AddAssembly(string assemblyString)
 		{
 			Assembly a = Assembly.Load(assemblyString);
@@ -22,36 +17,6 @@ namespace sqlcop.engine
 			Assembly a = Assembly.LoadFrom(assemblyFile);
 			LoadTypesFromAssembly(a);
 		}
-
-		public IEnumerable<IDescribeSqlProblem> ApplyActiveRules(IDescribeSql sql)
-		{
-			return _catalog.ApplyActiveRules(sql);
-		}
-
-		public void Activate(string canonicalName)
-		{
-			_catalog.Activate(canonicalName);
-		}
-		
-		public void Deactivate(string canonicalName)
-		{
-			_catalog.Deactivate(canonicalName);
-		}
-
-		public IEnumerable<IJudgeSql> ActiveRules
-		{
-			get { return _catalog.ActiveRules; }
-		}
-
-		public IEnumerable<IJudgeSql> Rules
-		{
-			get { return _catalog.Rules; }
-		}
-
-		public IEnumerable<IJudgeSql> InactiveRules
-		{
-			get { return _catalog.InactiveRules; }
-		}
 		
 		private void LoadTypesFromAssembly(Assembly a)
 		{
@@ -62,12 +27,10 @@ namespace sqlcop.engine
 					object o = type.GetConstructor(Type.EmptyTypes)
 								   .Invoke(null);
 					IJudgeSql rule = (IJudgeSql) o;
-					_catalog.AddActive(rule);
+					AddActiveRule(rule);
 				}
 			}
 		}
-		
-		private SimpleRuleCatalog _catalog;
 	}
 }
 

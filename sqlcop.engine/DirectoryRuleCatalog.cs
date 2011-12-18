@@ -4,13 +4,8 @@ using System.IO;
 
 namespace sqlcop.engine
 {
-	public class DirectoryRuleCatalog : ICatalogRules
+	public class DirectoryRuleCatalog : BaseProxyCatalog
 	{
-		public DirectoryRuleCatalog()
-		{
-			_catalog = new SimpleRuleCatalog();
-		}
-		
 		public void AddDirectory(string path)
 		{
 			AssemblyRuleCatalog catalog = new AssemblyRuleCatalog();
@@ -29,41 +24,9 @@ namespace sqlcop.engine
 			}
 			foreach(IJudgeSql activeRule in catalog.ActiveRules)
 			{
-				_catalog.AddActive(activeRule);
+				AddActiveRule(activeRule);
 			}
 		}
-
-		public IEnumerable<IDescribeSqlProblem> ApplyActiveRules(IDescribeSql sql)
-		{
-			return _catalog.ApplyActiveRules(sql);
-		}
-
-		public void Activate(string canonicalName)
-		{
-			_catalog.Activate(canonicalName);
-		}
-
-		public void Deactivate(string canonicalName)
-		{
-			_catalog.Deactivate(canonicalName);
-		}
-
-		public IEnumerable<IJudgeSql> ActiveRules
-		{
-			get { return _catalog.ActiveRules; }
-		}
-
-		public IEnumerable<IJudgeSql> Rules
-		{
-			get { return _catalog.Rules; }
-		}
-
-		public IEnumerable<IJudgeSql> InactiveRules
-		{
-			get { return _catalog.InactiveRules; }
-		}
-		
-		private SimpleRuleCatalog _catalog;
 	}
 }
 
