@@ -24,10 +24,15 @@ namespace sqlcop.engine
 			{
 				if(type.IsClass && typeof(IJudgeSql).IsAssignableFrom(type))
 				{
-					object o = type.GetConstructor(Type.EmptyTypes)
-								   .Invoke(null);
-					IJudgeSql rule = (IJudgeSql) o;
-					AddActiveRule(rule);
+					try
+					{
+						object o = type.GetConstructor(Type.EmptyTypes)
+									   .Invoke(null);
+						IJudgeSql rule = (IJudgeSql) o;
+						AddActiveRule(rule);
+					}
+					catch(NullReferenceException) {}
+					catch(InvalidCastException) {}
 				}
 			}
 		}
