@@ -26,6 +26,54 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
 		}
 		
+		[Test]
+		public void Identifies_All_With_Case_Insensitivity()
+		{
+			_inputToken = "all";
+			_expectedToken = Tokens.ALL;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Distinct_With_Case_Insensitivity()
+		{
+			_inputToken = "distinct";
+			_expectedToken = Tokens.DISTINCT;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Top_With_Case_Insensitivity()
+		{
+			_inputToken = "top";
+			_expectedToken = Tokens.TOP;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Percent_With_Case_Insensitivity()
+		{
+			_inputToken = "percent";
+			_expectedToken = Tokens.PERCENT;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_With_With_Case_Insensitivity()
+		{
+			_inputToken = "with";
+			_expectedToken = Tokens.WITH;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Ties_With_Case_Insensitivity()
+		{
+			_inputToken = "ties";
+			_expectedToken = Tokens.TIES;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{

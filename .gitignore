@@ -6,6 +6,7 @@ bin
 obj
 .DS_Store
 *.suo
+*.conflicts
 
 test-results
 TestResult.xml

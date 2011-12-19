@@ -10,15 +10,75 @@ namespace sqlcop.tests
 	public class NonReservedWordTokenTests
 	{
 		[Test]
-		public void Identifies_Name_Tokens()
+		public void Identifies_Plain_Name_Tokens()
 		{
 			_expectedToken = Tokens.NAME;
 			_inputs = new string[] {
-				"Table",
+				"TABLE",
 				"TABLE_UNDERSCORE",
 				"TableNum123",
-				"#TempTable",
-				"##GlobalTempTable"
+				"table",
+				"_table",
+				"table$dollarsign",
+				"table@atsign",
+				"table#numbersign"
+			};
+			EnsureLexerRecognizesInputToken();
+		}
+		
+		[Test]
+		public void Identifies_Bracketed_Name_Tokens()
+		{
+			_expectedToken = Tokens.BRACES_NAME;
+			_inputs = new string[] {
+				"[TABLE]",
+				"[TABLE_UNDERSCORE]",
+				"[TableNum123]",
+				"[table]",
+				"[_table]",
+				"[table$dollarsign]",
+				"[table@atsign]",
+				"[table#numbersign]",
+				"[bracketd with space]"
+			};
+			EnsureLexerRecognizesInputToken();
+		}
+		
+		[Test]
+		public void Identifies_Temp_Table_Name_Tokens()
+		{
+			_expectedToken = Tokens.TEMP_TABLE_NAME;
+			_inputs = new string[] {
+				"#TABLE",
+				"#TABLE_UNDERSCORE",
+				"#TableNum123",
+				"#table",
+				"#_table",
+				"#table$dollarsign",
+				"#table@atsign",
+				"#table#numbersign",
+				"##TABLE",
+				"##TABLE_UNDERSCORE",
+				"##TableNum123",
+				"##table",
+				"##_table",
+				"##table$dollarsign",
+				"##table@atsign",
+				"##table#numbersign"
+			};
+			EnsureLexerRecognizesInputToken();
+		}
+		
+		[Test]
+		public void Identifies_Integer_Values()
+		{
+			_expectedToken = Tokens.INTEGER;
+			_inputs = new string[] {
+				"-1000",
+				"-1",
+				"0",
+				"1",
+				"1000"
 			};
 			EnsureLexerRecognizesInputToken();
 		}
@@ -38,6 +98,7 @@ namespace sqlcop.tests
 			{
 				_scanner.SetSource(input, 0);
 				Assert.That(_scanner.yylex(), Is.EqualTo(token));
+				Assert.That(_scanner.yytext, Is.EqualTo(input));
 				Assert.That(_scanner.yylex(), Is.EqualTo(eofToken));
 			}
 		}
