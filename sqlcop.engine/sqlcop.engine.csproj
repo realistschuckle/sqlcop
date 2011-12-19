@@ -47,6 +47,7 @@
     <Compile Include="AssemblyRuleCatalog.cs" />
     <Compile Include="DirectoryRuleCatalog.cs" />
     <Compile Include="BaseProxyCatalog.cs" />
+    <Compile Include="InvalidSqlException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

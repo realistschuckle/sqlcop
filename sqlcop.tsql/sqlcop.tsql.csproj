@@ -19,6 +19,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="mkdir -p Generated" workingdir="${ProjectDir}" />
+        <Command type="BeforeBuild" command="mono ../libs/gppg/binaries/Gplex.exe /out:Generated/lexer.cs lexer.l" workingdir="${ProjectDir}" />
+        <Command type="BeforeBuild" command="mono ../libs/gppg/binaries/gppg.exe /gplex /out:Generated/parser.cs parser.y" workingdir="${ProjectDir}" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -27,13 +34,38 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="mkdir -p Generated" workingdir="${ProjectDir}" />
+        <Command type="BeforeBuild" command="mono ../libs/gppg/binaries/Gplex.exe /out:Generated/lexer.cs lexer.l" workingdir="${ProjectDir}" />
+        <Command type="BeforeBuild" command="mono ../libs/gppg/binaries/gppg.exe /gplex /out:Generated/parser.cs parser.y" workingdir="${ProjectDir}" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="QUT.ShiftReduceParser">
+      <HintPath>..\libs\gppg\binaries\QUT.ShiftReduceParser.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyClass.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Generated\lexer.cs" />
+    <Compile Include="Generated\parser.cs" />
+    <Compile Include="TSqlParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="lexer.l" />
+    <None Include="parser.y" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Generated\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\sqlcop.engine\sqlcop.engine.csproj">
+      <Project>{2C4A8F09-B706-4F2C-8EA9-9B98B2FCCE30}</Project>
+      <Name>sqlcop.engine</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

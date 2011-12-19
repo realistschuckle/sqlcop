@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sqlcop.engine", "sqlcop.eng
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sqlcop.tests", "sqlcop.tests\sqlcop.tests.csproj", "{47B96E06-7FCD-4FA9-891E-7743AC47AFCC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sqlcop.tsql", "sqlcop.tsql\sqlcop.tsql.csproj", "{4784019E-1D44-4271-9F91-ADA8CBF29228}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,6 +17,10 @@ Global
 		{2C4A8F09-B706-4F2C-8EA9-9B98B2FCCE30}.Debug|x86.Build.0 = Debug|Any CPU
 		{2C4A8F09-B706-4F2C-8EA9-9B98B2FCCE30}.Release|x86.ActiveCfg = Release|Any CPU
 		{2C4A8F09-B706-4F2C-8EA9-9B98B2FCCE30}.Release|x86.Build.0 = Release|Any CPU
+		{4784019E-1D44-4271-9F91-ADA8CBF29228}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4784019E-1D44-4271-9F91-ADA8CBF29228}.Debug|x86.Build.0 = Debug|Any CPU
+		{4784019E-1D44-4271-9F91-ADA8CBF29228}.Release|x86.ActiveCfg = Release|Any CPU
+		{4784019E-1D44-4271-9F91-ADA8CBF29228}.Release|x86.Build.0 = Release|Any CPU
 		{47B96E06-7FCD-4FA9-891E-7743AC47AFCC}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{47B96E06-7FCD-4FA9-891E-7743AC47AFCC}.Debug|x86.Build.0 = Debug|Any CPU
 		{47B96E06-7FCD-4FA9-891E-7743AC47AFCC}.Release|x86.ActiveCfg = Release|Any CPU

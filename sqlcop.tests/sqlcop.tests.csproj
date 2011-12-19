@@ -44,6 +44,10 @@
     <Compile Include="SimpleRuleCatalogTest.cs" />
     <Compile Include="AssemblyRuleCatalogTests.cs" />
     <Compile Include="DirectoryRuleCatalogTests.cs" />
+    <Compile Include="tsql\TSqlParserMetaTests.cs" />
+    <Compile Include="tsql\ReservedWordTokenTests.cs" />
+    <Compile Include="tsql\SelectFromParserTests.cs" />
+    <Compile Include="tsql\NonReservedWordTokenTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -51,5 +55,12 @@
       <Project>{2C4A8F09-B706-4F2C-8EA9-9B98B2FCCE30}</Project>
       <Name>sqlcop.engine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\sqlcop.tsql\sqlcop.tsql.csproj">
+      <Project>{4784019E-1D44-4271-9F91-ADA8CBF29228}</Project>
+      <Name>sqlcop.tsql</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="tsql\" />
   </ItemGroup>
 </Project>
