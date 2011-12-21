@@ -285,7 +285,7 @@ namespace sqlcop.tests
 				"schema.table",
 				"odb.schema.table",
 			};
-			string format = "SELECT Col from Platter into {0}";
+			string format = "SELECT Col into {0} from Platter";
 			foreach(string table in tables)
 			{
 				string input = string.Format(format, table);

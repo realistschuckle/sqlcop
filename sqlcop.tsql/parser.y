@@ -14,8 +14,8 @@ statement : select EOF
           ;
 
 select : select_clause
-         aliased_from_clause
          into_clause
+         aliased_from_clause
        ;
        
 select_clause : SELECT repetition limit columns
