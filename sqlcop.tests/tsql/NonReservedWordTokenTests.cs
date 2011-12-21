@@ -73,6 +73,7 @@ namespace sqlcop.tests
 		public void Identifies_Integer_Literals()
 		{
 			_expectedToken = Tokens.INTEGER;
+			_alternateToken = Tokens.S_INTEGER;
 			_inputs = new string[] {
 				"-1000",
 				"-1",
@@ -113,6 +114,7 @@ namespace sqlcop.tests
 		public void Identifies_Decimal_Literals()
 		{
 			_expectedToken = Tokens.DECIMAL;
+			_alternateToken = Tokens.S_DECIMAL;
 			_inputs = new string[] {
 				"1984.1204",
 				"-2.0",
@@ -126,6 +128,7 @@ namespace sqlcop.tests
 		public void Identifies_Float_Literals()
 		{
 			_expectedToken = Tokens.FLOAT;
+			_alternateToken = Tokens.S_FLOAT;
 			_inputs = new string[] {
 				"-101.5E5",
 				"0.5E-2",
@@ -139,6 +142,7 @@ namespace sqlcop.tests
 		public void Identifies_Money_Literals()
 		{
 			_expectedToken = Tokens.MONEY;
+			_alternateToken = Tokens.S_MONEY;
 			_inputs = new string[] {
 				"$12",
 				"-$542023.14",
@@ -151,18 +155,26 @@ namespace sqlcop.tests
 		public void RunBeforeEachTest()
 		{
 			_scanner = new Scanner();
+			_alternateToken = null;
 			_eofToken = Tokens.EOF;
 		}
 		
 		private void EnsureLexerRecognizesInputToken()
 		{
 			int token = (int) _expectedToken;
+			int alternate = -100;
+			if(_alternateToken.HasValue)
+			{
+				alternate = (int) _alternateToken.Value;
+			}
 			int eofToken = (int) _eofToken;
 			foreach(string input in _inputs)
 			{
 				_scanner.SetSource(input, 0);
 				string msg = "Failed on " + input;
-				Assert.That(_scanner.yylex(), Is.EqualTo(token), msg);
+				int lex = _scanner.yylex();
+				bool isValid = lex == token || lex == alternate;
+				Assert.That(isValid, msg);
 				Assert.That(_scanner.yytext, Is.EqualTo(input));
 				Assert.That(_scanner.yylex(), Is.EqualTo(eofToken));
 			}
@@ -171,6 +183,7 @@ namespace sqlcop.tests
 		private Tokens _eofToken;
 		private IEnumerable<string> _inputs;
 		private Tokens _expectedToken;
+		private Tokens? _alternateToken;
 		private Scanner _scanner;
 	}
 }

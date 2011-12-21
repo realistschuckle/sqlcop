@@ -2,6 +2,7 @@
 
 %token NAME TEMP_TABLE_NAME BRACES_NAME
 %token INTEGER STRING BINARY DECIMAL FLOAT MONEY
+%token S_INTEGER S_DECIMAL S_FLOAT S_MONEY
 %token SELECT FROM ALL DISTINCT TOP PERCENT WITH TIES AS
 
 %%
@@ -68,6 +69,10 @@ literal : INTEGER
         | DECIMAL
         | FLOAT
         | MONEY
+        | S_INTEGER
+        | S_DECIMAL
+        | S_FLOAT
+        | S_MONEY
         ;
 
 %%
