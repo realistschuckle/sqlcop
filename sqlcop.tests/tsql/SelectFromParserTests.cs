@@ -163,9 +163,18 @@ namespace sqlcop.tests
 		[Test]
 		public void Recognizes_Prefixed_Table_Name()
 		{
-			string input = "SELECT Column FROM odb.schema.Table";
-			_scanner.SetSource(input, 0);
-			Assert.That(_parser.Parse());
+			string[] tables = new string[] {
+				"schema.table",
+				"odb.schema.table",
+				"remotedb.odb.schema.table"
+			};
+			string format = "SELECT col from {0}";
+			foreach(string table in tables)
+			{
+				string input = string.Format(format, table);
+				_scanner.SetSource(input, 0);
+				Assert.That(_parser.Parse());
+			}
 		}
 		
 		[Test]
