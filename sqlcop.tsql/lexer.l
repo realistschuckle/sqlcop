@@ -50,6 +50,7 @@ BINARY            0x[0-9a-fA-F]*
 ","                 { return C(); }
 "."                 { return C(); }
 "="                 { return C(); }
+"+"                 { return C(); }
 
 [ \t\n]             {  }
 
