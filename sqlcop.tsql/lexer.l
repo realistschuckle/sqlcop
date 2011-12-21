@@ -9,6 +9,15 @@ PERCENT           [pP][eE][rR][cC][eE][nN][tT]
 WITH              [wW][iI][tT][hH]
 TIES              [tT][iI][eE][sS]
 AS                [aA][sS]
+AND               [aA][nN][dD]
+ANY               [aA][nN][yY]
+BETWEEN           [bB][eE][tT][wW][eE][eE][nN]
+EXISTS            [eE][xX][iI][sS][tT][sS]
+IN                [iI][nN]
+LIKE              [lL][iI][kK][eE]
+NOT               [nN][oO][tT]
+OR                [oO][rR]
+SOME              [sS][oO][mM][eE]
 
 NAME              [a-zA-Z_][a-zA-Z0-9_@#$]*
 BRACES_NAME       \[[a-zA-Z_][^\]]*\]
@@ -36,6 +45,15 @@ BINARY            0x[0-9a-fA-F]*
 {WITH}              { return T(Tokens.WITH); }
 {TIES}              { return T(Tokens.TIES); }
 {AS}                { return T(Tokens.AS); }
+{AND}               { return T(Tokens.AND); }
+{ANY}               { return T(Tokens.ANY); }
+{BETWEEN}           { return T(Tokens.BETWEEN); }
+{EXISTS}            { return T(Tokens.EXISTS); }
+{IN}                { return T(Tokens.IN); }
+{LIKE}              { return T(Tokens.LIKE); }
+{NOT}               { return T(Tokens.NOT); }
+{OR}                { return T(Tokens.OR); }
+{SOME}              { return T(Tokens.SOME); }
 
 {NAME}              { return T(Tokens.NAME); }
 {BRACES_NAME}       { return T(Tokens.BRACES_NAME); }

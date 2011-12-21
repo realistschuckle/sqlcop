@@ -82,6 +82,78 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
 		}
 		
+		[Test]
+		public void Identifies_And_With_Case_Insensitivity()
+		{
+			_inputToken = "and";
+			_expectedToken = Tokens.AND;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Any_With_Case_Insensitivity()
+		{
+			_inputToken = "any";
+			_expectedToken = Tokens.ANY;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Between_With_Case_Insensitivity()
+		{
+			_inputToken = "between";
+			_expectedToken = Tokens.BETWEEN;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Exists_With_Case_Insensitivity()
+		{
+			_inputToken = "exists";
+			_expectedToken = Tokens.EXISTS;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_In_With_Case_Insensitivity()
+		{
+			_inputToken = "in";
+			_expectedToken = Tokens.IN;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Like_With_Case_Insensitivity()
+		{
+			_inputToken = "like";
+			_expectedToken = Tokens.LIKE;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Not_With_Case_Insensitivity()
+		{
+			_inputToken = "Not";
+			_expectedToken = Tokens.NOT;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Or_With_Case_Insensitivity()
+		{
+			_inputToken = "or";
+			_expectedToken = Tokens.OR;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Some_With_Case_Insensitivity()
+		{
+			_inputToken = "some";
+			_expectedToken = Tokens.SOME;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
