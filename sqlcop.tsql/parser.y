@@ -21,13 +21,17 @@ select : select_clause
 select_clause : SELECT repetition limit columns
               ;
 
-from_clause : FROM table_or_view_name
+from_clause : FROM table_or_view_name tablesample
             ;
 
 aliased_from_clause : from_clause alias
                     ;
 
 into_clause : INTO local_table_or_view_name
+            |
+            ;
+
+tablesample : TABLESAMPLE INTEGER
             |
             ;
 
