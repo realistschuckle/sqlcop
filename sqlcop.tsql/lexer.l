@@ -8,6 +8,7 @@ TOP               [tT][oO][pP]
 PERCENT           [pP][eE][rR][cC][eE][nN][tT]
 WITH              [wW][iI][tT][hH]
 TIES              [tT][iI][eE][sS]
+AS                [aA][sS]
 
 NAME              [a-zA-Z_][a-zA-Z0-9_@#$]*
 BRACES_NAME       \[[a-zA-Z_][^\]]*\]
@@ -24,6 +25,7 @@ INTEGER           -?[0-9]+
 {PERCENT}           { return T(Tokens.PERCENT); }
 {WITH}              { return T(Tokens.WITH); }
 {TIES}              { return T(Tokens.TIES); }
+{AS}                { return T(Tokens.AS); }
 
 {NAME}              { return T(Tokens.NAME); }
 {BRACES_NAME}       { return T(Tokens.BRACES_NAME); }
