@@ -178,9 +178,21 @@ namespace sqlcop.tests
 		[Test]
 		public void Recognizes_Assigned_Column()
 		{
-			string input = "SELECT Constant = 3 FROM Table";
-			_scanner.SetSource(input, 0);
-			Assert.That(_parser.Parse());
+			string[] literals = new string[] {
+				"'string'",
+				"0x12Ef",
+				"1894",
+				"99.45",
+				"99.45E3",
+				"$12,345.67"
+			};
+			string format = "SELECT Col = {0} FROM Table";
+			foreach(string literal in literals)
+			{
+				string source = string.Format(format, literal);
+				_scanner.SetSource(source, 0);
+				Assert.That(_parser.Parse(), "Failed on const " + literal);
+			}
 		}
 		
 		[SetUp]

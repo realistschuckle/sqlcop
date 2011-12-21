@@ -57,8 +57,16 @@ alias : NAME
       |
       ;
 
-any_value : INTEGER
+any_value : literal
           ;
+
+literal : INTEGER
+        | STRING
+        | BINARY
+        | DECIMAL
+        | FLOAT
+        | MONEY
+        ;
 
 %%
 
