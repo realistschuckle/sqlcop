@@ -210,6 +210,14 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
 		}
 		
+		[Test]
+		public void Identifies_Rows_With_Case_Insensitivity()
+		{
+			_inputToken = "rows";
+			_expectedToken = Tokens.ROWS;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{

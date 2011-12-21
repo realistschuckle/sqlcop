@@ -25,6 +25,7 @@ INTO              [iI][nN][tT][oO]
 TABLESAMPLE       [tT][aA][bB][lL][eE][sS][aA][mM][pP][lL][eE]
 SYSTEM            [sS][yY][sS][tT][eE][mM]
 REPEATABLE        [rR][eE][pP][eE][aA][tT][aA][bB][lL][eE]
+ROWS              [rR][oO][wW][sS]
 
 NAME              [a-zA-Z_][a-zA-Z0-9_@#$]*
 BRACES_NAME       \[[a-zA-Z_][^\]]*\]
@@ -68,6 +69,7 @@ BINARY            0x[0-9a-fA-F]*
 {TABLESAMPLE}       { return T(Tokens.TABLESAMPLE); }
 {SYSTEM}            { return T(Tokens.SYSTEM); }
 {REPEATABLE}        { return T(Tokens.REPEATABLE); }
+{ROWS}              { return T(Tokens.ROWS); }
 
 {NAME}              { return T(Tokens.NAME); }
 {BRACES_NAME}       { return T(Tokens.BRACES_NAME); }
