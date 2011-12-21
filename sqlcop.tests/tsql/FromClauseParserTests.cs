@@ -40,6 +40,14 @@ namespace sqlcop.tests
 			Assert.That(_parser.Parse());
 		}
 		
+		[Test]
+		public void Recognizes_Tablesample_With_Repeatable_Modifier()
+		{
+			string input = "select * from t tablesample 19 repeatable(99)";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
