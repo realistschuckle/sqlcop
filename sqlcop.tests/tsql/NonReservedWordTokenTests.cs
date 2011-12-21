@@ -96,6 +96,19 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputToken();
 		}
 		
+		[Test]
+		public void Identifies_Binary_Literals()
+		{
+			_expectedToken = Tokens.BINARY;
+			_inputs = new string[] {
+				"0xAE",
+				"0x12Ef",
+				"0x69048AEFDD010E",
+				"0x"
+			};
+			EnsureLexerRecognizesInputToken();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{

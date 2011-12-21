@@ -16,6 +16,7 @@ TEMP_TABLE_NAME   #{1,2}[a-zA-Z_][a-zA-Z0-9_@#$]*
 
 INTEGER           -?[0-9]+
 STRING            '([^']|'')*'
+BINARY            0x[0-9a-fA-F]*
 
 %%
 
@@ -35,6 +36,7 @@ STRING            '([^']|'')*'
 
 {INTEGER}           { return T(Tokens.INTEGER); }
 {STRING}            { return T(Tokens.STRING); }
+{BINARY}            { return T(Tokens.BINARY); }
 
 "*"                 { return C(); }
 "("                 { return C(); }
