@@ -32,7 +32,7 @@ namespace sqlcop.tests
 			Assert.That(_parser.Parse());
 		}
 		
-		[Test, Ignore]
+		[Test]
 		public void Recognizes_Tablesample_With_Sample_Number_Rows_Modifier()
 		{
 			string input = "select * from t tablesample 17 rows";

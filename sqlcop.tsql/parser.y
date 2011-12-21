@@ -37,6 +37,7 @@ tablesample_modifier : TABLESAMPLE INTEGER tablesample_count_modifier
                      ;
 
 tablesample_count_modifier : PERCENT
+                           | ROWS
                            |
                            ;
 
