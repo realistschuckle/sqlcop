@@ -218,6 +218,21 @@ namespace sqlcop.tests
 				"$12,345.67",
 				"[Another Column]",
 				"t.YAC",
+				"'string' + 'more' alias2",
+				"2 + 3.4 as sum",
+				"3 - 4",
+				"2 / 3",
+				"$8 * 7",
+				"8-4.3",
+				"6+3",
+				"3&2",
+				"3 | 2",
+				"3~2",
+				"3 + 4 - 5 / 6",
+				"3+4-5/6",
+				"3 < 5",
+				"0x34 > 5",
+				"3 = '17'",
 			};
 			string format = "SELECT Col = {0} FROM Table t";
 			foreach(string literal in literals)
