@@ -20,9 +20,13 @@ columns : '*'
         | column_list
         ;
 
-column_list : NAME alias
+column_list : prefixed_name alias
             | column_list ',' NAME alias
             ;
+
+prefixed_name : NAME
+              | NAME '.' NAME
+              ;
 
 limit : TOP INTEGER limit_modifier
       | TOP '(' INTEGER ')' limit_modifier
