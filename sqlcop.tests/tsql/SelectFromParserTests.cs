@@ -177,6 +177,27 @@ namespace sqlcop.tests
 		}
 		
 		[Test]
+		public void Recognizes_Method_Names_In_Column_List()
+		{
+			string[] methods = new string[] {
+				"MAX(col)",
+				"GETDATE()",
+				"custom_func(1, 2, 3, '5')",
+			};
+			string format = "SELECT {0} FROM table";
+			foreach(string method in methods)
+			{
+				string source = string.Format(format, method);
+				_scanner.SetSource(source, 0);
+				Assert.That(_parser.Parse(), "Failed on " + method);
+			}
+
+			string input = "SELECT MAX(col) FROM table";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
 		public void Recognizes_Computation_In_Column_List()
 		{
 			List<string> computations = new List<string> {

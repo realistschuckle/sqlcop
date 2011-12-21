@@ -70,9 +70,14 @@ expression : expression '+' expression_atom
            | expression '>' expression_atom
            | expression '=' expression_atom
            | expression signed_literal
+           | NAME '(' method_arg_list ')'
            | expression_atom
            ;
 
+method_arg_list : expression
+                | method_arg_list ',' expression
+                |
+                ;
 
 expression_atom : literal
                 | braced_name
