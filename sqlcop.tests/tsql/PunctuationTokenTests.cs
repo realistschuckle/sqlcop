@@ -99,6 +99,13 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputToken();
 		}
 		
+		[Test]
+		public void Recognizes_Bitwise_Not()
+		{
+			_input = "~";
+			EnsureLexerRecognizesInputToken();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
