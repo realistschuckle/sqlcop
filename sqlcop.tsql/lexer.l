@@ -36,6 +36,7 @@ INTEGER           -?[0-9]+
 "("                 { return C(); }
 ")"                 { return C(); }
 ","                 { return C(); }
+"."                 { return C(); }
 
 [ \t\n]             {  }
 
