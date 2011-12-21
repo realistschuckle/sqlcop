@@ -159,6 +159,55 @@ namespace sqlcop.tests
 			Assert.That(_parser.Parse());
 		}
 		
+		[Test]
+		public void Recognizes_Column_With_Double_Prefix()
+		{
+			string input = "SELECT dbo.p.Column FROM Table p";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Column_List_With_Double_Prefixes_In_Select_List()
+		{
+			string input = "SELECT t.Col1, Col2, dbo.t.Col3 FROM Table t";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Column_With_Triple_Prefix()
+		{
+			string input = "SELECT odb.schema.p.Column FROM Table p";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Column_List_With_Triple_Prefixes_In_Select_List()
+		{
+			string input = "SELECT t.Col1, Col2, odb.dbo.t.Col3 FROM Table t";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Bracketed_Column_With_Triple_Prefix()
+		{
+			string input = "SELECT [odb].[schema].[p].[Column] FROM Table p";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Bracketed_Column_List_With_Triple_Prefixes_In_Select_List()
+		{
+			string input = "SELECT [t].[Col1], Col2, [odb].dbo.[t].[Col3]"
+				           + "\nFROM Table t";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{

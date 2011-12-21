@@ -24,8 +24,10 @@ column_list : prefixed_name alias
             | column_list ',' prefixed_name alias
             ;
 
-prefixed_name : NAME
-              | NAME '.' NAME
+prefixed_name : braced_name '.' braced_name '.' braced_name '.' braced_name
+              | braced_name '.' braced_name '.' braced_name
+              | braced_name '.' braced_name
+              | braced_name
               ;
 
 limit : TOP INTEGER limit_modifier
@@ -39,10 +41,13 @@ limit_modifier : PERCENT
                |
                ;
 
-table_or_view_name : NAME
+table_or_view_name : braced_name
                    | TEMP_TABLE_NAME
-                   | BRACES_NAME
                    ;
+
+braced_name : NAME
+            | BRACES_NAME
+            ;
 
 alias : NAME
       | AS NAME
