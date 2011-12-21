@@ -22,7 +22,7 @@
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="mkdir -p Generated" workingdir="${ProjectDir}" />
-        <Command type="BeforeBuild" command="mono ../libs/gppg/binaries/Gplex.exe /out:Generated/lexer.cs lexer.l" workingdir="${ProjectDir}" />
+        <Command type="BeforeBuild" command="mono ../libs/gppg/binaries/Gplex.exe /unicode /out:Generated/lexer.cs lexer.l" workingdir="${ProjectDir}" />
         <Command type="BeforeBuild" command="mono ../libs/gppg/binaries/gppg.exe /gplex /out:Generated/parser.cs /conflicts parser.y" workingdir="${ProjectDir}" />
       </CustomCommands>
     </CustomCommands>

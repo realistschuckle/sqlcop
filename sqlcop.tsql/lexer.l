@@ -37,6 +37,10 @@ INTEGER           -?[0-9]+
 ")"                 { return C(); }
 ","                 { return C(); }
 
+[ \t\n]             {  }
+
+.                   { return T(Tokens.error); }
+
 %%
 
 internal int T(Tokens token) {
