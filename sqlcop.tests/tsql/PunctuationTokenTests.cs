@@ -106,6 +106,27 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputToken();
 		}
 		
+		[Test]
+		public void Recognizes_Greater_Than()
+		{
+			_input = ">";
+			EnsureLexerRecognizesInputToken();
+		}
+		
+		[Test]
+		public void Recognizes_Less_Than()
+		{
+			_input = "<";
+			EnsureLexerRecognizesInputToken();
+		}
+		
+		[Test]
+		public void Recognizes_Comparison_Negation()
+		{
+			_input = "!";
+			EnsureLexerRecognizesInputToken();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
