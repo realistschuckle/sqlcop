@@ -13,7 +13,9 @@ AS                [aA][sS]
 NAME              [a-zA-Z_][a-zA-Z0-9_@#$]*
 BRACES_NAME       \[[a-zA-Z_][^\]]*\]
 TEMP_TABLE_NAME   #{1,2}[a-zA-Z_][a-zA-Z0-9_@#$]*
+
 INTEGER           -?[0-9]+
+STRING            '([^']|'')*'
 
 %%
 
@@ -30,7 +32,9 @@ INTEGER           -?[0-9]+
 {NAME}              { return T(Tokens.NAME); }
 {BRACES_NAME}       { return T(Tokens.BRACES_NAME); }
 {TEMP_TABLE_NAME}   { return T(Tokens.TEMP_TABLE_NAME); }
+
 {INTEGER}           { return T(Tokens.INTEGER); }
+{STRING}            { return T(Tokens.STRING); }
 
 "*"                 { return C(); }
 "("                 { return C(); }

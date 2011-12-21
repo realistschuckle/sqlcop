@@ -70,7 +70,7 @@ namespace sqlcop.tests
 		}
 		
 		[Test]
-		public void Identifies_Integer_Values()
+		public void Identifies_Integer_Literals()
 		{
 			_expectedToken = Tokens.INTEGER;
 			_inputs = new string[] {
@@ -79,6 +79,19 @@ namespace sqlcop.tests
 				"0",
 				"1",
 				"1000"
+			};
+			EnsureLexerRecognizesInputToken();
+		}
+		
+		[Test]
+		public void Identifies_String_Literals()
+		{
+			_expectedToken = Tokens.STRING;
+			_inputs = new string[] {
+				"''",
+				"'str'",
+				"'some space'",
+				"'Conan O''Brian'"
 			};
 			EnsureLexerRecognizesInputToken();
 		}
@@ -97,7 +110,8 @@ namespace sqlcop.tests
 			foreach(string input in _inputs)
 			{
 				_scanner.SetSource(input, 0);
-				Assert.That(_scanner.yylex(), Is.EqualTo(token));
+				string msg = "Failed on " + input;
+				Assert.That(_scanner.yylex(), Is.EqualTo(token), msg);
 				Assert.That(_scanner.yytext, Is.EqualTo(input));
 				Assert.That(_scanner.yylex(), Is.EqualTo(eofToken));
 			}
