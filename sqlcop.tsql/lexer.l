@@ -22,6 +22,7 @@ EXCEPT            [eE][xX][cC][eE][pP][tT]
 INTERSECT         [iI][nN][tT][eE][rR][sS][eE][cC][tT]
 UNION             [uU][nN][iI][oO][nN]
 INTO              [iI][nN][tT][oO]
+TABLESAMPLE       [tT][aA][bB][lL][eE][sS][aA][mM][pP][lL][eE]
 
 NAME              [a-zA-Z_][a-zA-Z0-9_@#$]*
 BRACES_NAME       \[[a-zA-Z_][^\]]*\]
@@ -62,6 +63,7 @@ BINARY            0x[0-9a-fA-F]*
 {INTERSECT}         { return T(Tokens.INTERSECT); }
 {UNION}             { return T(Tokens.UNION); }
 {INTO}              { return T(Tokens.INTO); }
+{TABLESAMPLE}       { return T(Tokens.TABLESAMPLE); }
 
 {NAME}              { return T(Tokens.NAME); }
 {BRACES_NAME}       { return T(Tokens.BRACES_NAME); }
