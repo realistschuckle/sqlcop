@@ -109,6 +109,17 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputToken();
 		}
 		
+		[Test]
+		public void Identifies_Decimal_Literals()
+		{
+			_expectedToken = Tokens.DECIMAL;
+			_inputs = new string[] {
+				"1984.1204",
+				"-2.0",
+			};
+			EnsureLexerRecognizesInputToken();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
