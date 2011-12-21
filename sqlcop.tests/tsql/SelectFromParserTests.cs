@@ -126,6 +126,23 @@ namespace sqlcop.tests
 			}
 		}
 		
+		[Test]
+		public void Recognizes_Column_With_Alias_In_Select_List()
+		{
+			string input = "SELECT Column column_alias FROM Table";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Column_List_With_Alias_In_Select_List()
+		{
+			string input = "SELECT Column1 col, Column2, Column3 alias\n" +
+				           "FROM Table";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{

@@ -20,8 +20,8 @@ columns : '*'
         | column_list
         ;
 
-column_list : NAME
-            | column_list ',' NAME
+column_list : NAME alias
+            | column_list ',' NAME alias
             ;
 
 limit : TOP INTEGER limit_modifier
