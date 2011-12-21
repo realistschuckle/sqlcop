@@ -27,6 +27,27 @@ TOP               [tT][oO][pP]
 UNION             [uU][nN][iI][oO][nN]
 WITH              [wW][iI][tT][hH]
 
+FASTFIRSTROW      [fF][aA][sS][tT][fF][iI][rR][sS][tT][rR][oO][wW]
+FORCESCAN         [fF][oO][rR][cC][eE][sS][cC][aA][nN]
+FORCESEEK         [fF][oO][rR][cC][eE][sS][eE][eE][kK]
+HOLDLOCK          [hH][oO][lL][dD][lL][oO][cC][kK]
+INDEX             [iI][nN][dD][eE][xX]
+NOEXPAND          [nN][oO][eE][xX][pP][aA][nN][dD]
+NOLOCK            [nN][oO][lL][oO][cC][kK]
+NOWAIT            [nN][oO][wW][aA][iI][tT]
+PAGLOCK           [pP][aA][gG][lL][oO][cC][kK]
+READCOMMITTED     [rR][eE][aA][dD][cC][oO][mM][mM][iI][tT][tT][eE][dD]
+READCOMMITTEDLOCK [rR][eE][aA][dD][cC][oO][mM][mM][iI][tT][tT][eE][dD][lL][oO][cC][kK]
+READPAST          [rR][eE][aA][dD][pP][aA][sS][tT]
+READUNCOMMITTED   [rR][eE][aA][dD][uU][nN][cC][oO][mM][mM][iI][tT][tT][eE][dD]
+REPEATABLEREAD    [rR][eE][pP][eE][aA][tT][aA][bB][lL][eE][rR][eE][aA][dD]
+ROWLOCK           [rR][oO][wW][lL][oO][cC][kK]
+SERIALIZABLE      [sS][eE][rR][iI][aA][lL][iI][zZ][aA][bB][lL][eE]
+TABLOCK           [tT][aA][bB][lL][oO][cC][kK]
+TABLOCKX          [tT][aA][bB][lL][oO][cC][kK][xX]
+UPDLOCK           [uU][pP][dD][lL][oO][cC][kK]
+XLOCK             [xX][lL][oO][cC][kK]
+
 NAME              [a-zA-Z_][a-zA-Z0-9_@#$]*
 BRACES_NAME       \[[a-zA-Z_][^\]]*\]
 TEMP_TABLE_NAME   #{1,2}[a-zA-Z_][a-zA-Z0-9_@#$]*
@@ -70,6 +91,27 @@ BINARY            0x[0-9a-fA-F]*
 {SYSTEM}            { return T(Tokens.SYSTEM); }
 {REPEATABLE}        { return T(Tokens.REPEATABLE); }
 {ROWS}              { return T(Tokens.ROWS); }
+
+{FASTFIRSTROW}      { return T(Tokens.FASTFIRSTROW); }
+{FORCESCAN}         { return T(Tokens.FORCESCAN); }
+{FORCESEEK}         { return T(Tokens.FORCESEEK); }
+{HOLDLOCK}          { return T(Tokens.HOLDLOCK); }
+{INDEX}             { return T(Tokens.INDEX); }
+{NOEXPAND}          { return T(Tokens.NOEXPAND); }
+{NOLOCK}            { return T(Tokens.NOLOCK); }
+{NOWAIT}            { return T(Tokens.NOWAIT); }
+{PAGLOCK}           { return T(Tokens.PAGLOCK); }
+{READCOMMITTED}     { return T(Tokens.READCOMMITTED); }
+{READCOMMITTEDLOCK} { return T(Tokens.READCOMMITTEDLOCK); }
+{READPAST}          { return T(Tokens.READPAST); }
+{READUNCOMMITTED}   { return T(Tokens.READUNCOMMITTED); }
+{REPEATABLEREAD}    { return T(Tokens.REPEATABLEREAD); }
+{ROWLOCK}           { return T(Tokens.ROWLOCK); }
+{SERIALIZABLE}      { return T(Tokens.SERIALIZABLE); }
+{TABLOCK}           { return T(Tokens.TABLOCK); }
+{TABLOCKX}          { return T(Tokens.TABLOCKX); }
+{UPDLOCK}           { return T(Tokens.UPDLOCK); }
+{XLOCK}             { return T(Tokens.XLOCK); }
 
 {NAME}              { return T(Tokens.NAME); }
 {BRACES_NAME}       { return T(Tokens.BRACES_NAME); }

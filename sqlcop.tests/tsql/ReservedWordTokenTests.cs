@@ -217,6 +217,166 @@ namespace sqlcop.tests
 			_expectedToken = Tokens.ROWS;
 			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
 		}
+
+		[Test]
+		public void Identifies_Fastfirstrow_With_Case_Sensitivity()
+		{
+			_inputToken = "fastfirstrow";
+			_expectedToken = Tokens.FASTFIRSTROW;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Forcescan_With_Case_Sensitivity()
+		{
+			_inputToken = "forcescan";
+			_expectedToken = Tokens.FORCESCAN;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Forceseek_With_Case_Sensitivity()
+		{
+			_inputToken = "forceseek";
+			_expectedToken = Tokens.FORCESEEK;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Holdlock_With_Case_Sensitivity()
+		{
+			_inputToken = "holdlock";
+			_expectedToken = Tokens.HOLDLOCK;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Index_With_Case_Sensitivity()
+		{
+			_inputToken = "index";
+			_expectedToken = Tokens.INDEX;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Noexpand_With_Case_Sensitivity()
+		{
+			_inputToken = "noexpand";
+			_expectedToken = Tokens.NOEXPAND;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Nolock_With_Case_Sensitivity()
+		{
+			_inputToken = "nolock";
+			_expectedToken = Tokens.NOLOCK;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Nowait_With_Case_Sensitivity()
+		{
+			_inputToken = "nowait";
+			_expectedToken = Tokens.NOWAIT;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Paglock_With_Case_Sensitivity()
+		{
+			_inputToken = "paglock";
+			_expectedToken = Tokens.PAGLOCK;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Readcommitted_With_Case_Sensitivity()
+		{
+			_inputToken = "readcommitted";
+			_expectedToken = Tokens.READCOMMITTED;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Readcommittedlock_With_Case_Sensitivity()
+		{
+			_inputToken = "readcommittedlock";
+			_expectedToken = Tokens.READCOMMITTEDLOCK;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Readpast_With_Case_Sensitivity()
+		{
+			_inputToken = "readpast";
+			_expectedToken = Tokens.READPAST;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Readuncommitted_With_Case_Sensitivity()
+		{
+			_inputToken = "readuncommitted";
+			_expectedToken = Tokens.READUNCOMMITTED;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Repeatableread_With_Case_Sensitivity()
+		{
+			_inputToken = "repeatableread";
+			_expectedToken = Tokens.REPEATABLEREAD;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Rowlock_With_Case_Sensitivity()
+		{
+			_inputToken = "rowlock";
+			_expectedToken = Tokens.ROWLOCK;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Serializable_With_Case_Sensitivity()
+		{
+			_inputToken = "serializable";
+			_expectedToken = Tokens.SERIALIZABLE;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Tablock_With_Case_Sensitivity()
+		{
+			_inputToken = "tablock";
+			_expectedToken = Tokens.TABLOCK;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Tablockx_With_Case_Sensitivity()
+		{
+			_inputToken = "tablockx";
+			_expectedToken = Tokens.TABLOCKX;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Updlock_With_Case_Sensitivity()
+		{
+			_inputToken = "updlock";
+			_expectedToken = Tokens.UPDLOCK;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Xlock_With_Case_Sensitivity()
+		{
+			_inputToken = "xlock";
+			_expectedToken = Tokens.XLOCK;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
 		
 		[SetUp]
 		public void RunBeforeEachTest()
