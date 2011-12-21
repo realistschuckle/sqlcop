@@ -15,6 +15,7 @@ statement : select EOF
 
 select : select_clause
          aliased_from_clause
+         into_clause
        ;
        
 select_clause : SELECT repetition limit columns
@@ -25,6 +26,10 @@ from_clause : FROM table_or_view_name
 
 aliased_from_clause : from_clause alias
                     ;
+
+into_clause : INTO local_table_or_view_name
+            |
+            ;
 
 repetition : ALL
            | DISTINCT
@@ -50,12 +55,19 @@ limit_modifier : PERCENT
                |
                ;
 
-table_or_view_name : braced_name '.' braced_name '.' braced_name '.' braced_name
-                   | braced_name '.' braced_name '.' braced_name
-                   | braced_name '.' braced_name
-                   | braced_name
-                   | TEMP_TABLE_NAME
+table_or_view_name : external_table_or_view_name
+                   | local_table_or_view_name
                    ;
+
+external_table_or_view_name : braced_name '.' braced_name '.' braced_name '.' braced_name
+                            ;
+
+local_table_or_view_name : braced_name '.' braced_name '.' braced_name
+                         | braced_name '.' braced_name
+                         | braced_name
+                         | TEMP_TABLE_NAME
+                         ;
+
 
 braced_name : NAME
             | BRACES_NAME

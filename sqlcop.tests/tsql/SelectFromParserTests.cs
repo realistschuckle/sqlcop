@@ -276,6 +276,23 @@ namespace sqlcop.tests
 				Assert.That(_parser.Parse(), "Failed on " + literal);
 			}
 		}
+		
+		[Test]
+		public void Recognizes_Select_From_Into()
+		{
+			string[] tables = new string[] {
+				"table",
+				"schema.table",
+				"odb.schema.table",
+			};
+			string format = "SELECT Col from Platter into {0}";
+			foreach(string table in tables)
+			{
+				string input = string.Format(format, table);
+				_scanner.SetSource(input, 0);
+				Assert.That(_parser.Parse());
+			}
+		}
 
 		[SetUp]
 		public void RunBeforeEachTest()
