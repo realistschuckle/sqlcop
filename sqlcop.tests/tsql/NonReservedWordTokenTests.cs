@@ -134,6 +134,18 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputToken();
 		}
 		
+		[Test]
+		public void Identifies_Money_Literals()
+		{
+			_expectedToken = Tokens.MONEY;
+			_inputs = new string[] {
+				"$12",
+				"$542023.14",
+				"$33,333.208"
+			};
+			EnsureLexerRecognizesInputToken();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
