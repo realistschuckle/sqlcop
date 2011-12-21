@@ -180,8 +180,8 @@ namespace sqlcop.tests
 		public void Recognizes_Computation_In_Column_List()
 		{
 			List<string> computations = new List<string> {
-				"'string' + 'more'",
-				"2 + 3.4",
+				"'string' + 'more' alias2",
+				"2 + 3.4 as sum",
 				"3 - 4",
 				"2 / 3",
 				"$8 * 7",
@@ -194,7 +194,7 @@ namespace sqlcop.tests
 				"3+4-5/6",
 				"3 < 5",
 				"0x34 > 5",
-				"3 = '17'"
+				"3 = '17'",
 			};
 			computations.Add(string.Join(",", computations.ToArray()));
 			string format = "SELECT {0} FROM Table";
