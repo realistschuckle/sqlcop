@@ -184,9 +184,11 @@ namespace sqlcop.tests
 				"1894",
 				"99.45",
 				"99.45E3",
-				"$12,345.67"
+				"$12,345.67",
+				"[Another Column]",
+				"t.YAC"
 			};
-			string format = "SELECT Col = {0} FROM Table";
+			string format = "SELECT Col = {0} FROM Table t";
 			foreach(string literal in literals)
 			{
 				string source = string.Format(format, literal);

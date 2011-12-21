@@ -58,6 +58,8 @@ alias : NAME
       ;
 
 any_value : literal
+          | braced_name
+          | braced_name '.' braced_name
           ;
 
 literal : INTEGER
