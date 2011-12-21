@@ -41,6 +41,7 @@ table_or_view_name : NAME
                    ;
 
 alias : NAME
+      | AS NAME
       |
       ;
 

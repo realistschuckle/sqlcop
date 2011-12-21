@@ -110,6 +110,22 @@ namespace sqlcop.tests
 			}
 		}
 		
+		[Test]
+		public void Recognizes_Table_With_Alias_Declared_With_As()
+		{
+			string[] tableNames = new string[] {
+				"TABLE AS tab",
+				"[bracketd with space] as alias",
+				"#table#numbersign As sumpin"
+			};
+			foreach(string tableName in tableNames)
+			{
+				string source = string.Format("SELECT * FROM {0}", tableName);
+				_scanner.SetSource(source, 0);
+				Assert.That(_parser.Parse());
+			}
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
