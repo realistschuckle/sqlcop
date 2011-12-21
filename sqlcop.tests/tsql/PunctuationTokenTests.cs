@@ -57,6 +57,27 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputToken();
 		}
 		
+		[Test]
+		public void Recognizes_Minus()
+		{
+			_input = "-";
+			EnsureLexerRecognizesInputToken();
+		}
+		
+		[Test]
+		public void Recognizes_Divide()
+		{
+			_input = "/";
+			EnsureLexerRecognizesInputToken();
+		}
+		
+		[Test]
+		public void Recognizes_Modulo()
+		{
+			_input = "%";
+			EnsureLexerRecognizesInputToken();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{

@@ -52,13 +52,16 @@ BINARY            0x[0-9a-fA-F]*
 {STRING}            { return T(Tokens.STRING); }
 {BINARY}            { return T(Tokens.BINARY); }
 
-"*"                 { return C(); }
-"("                 { return C(); }
-")"                 { return C(); }
-","                 { return C(); }
-"."                 { return C(); }
-"="                 { return C(); }
-"+"                 { return C(); }
+"*"                 |
+"("                 |
+")"                 |
+","                 |
+"."                 |
+"="                 |
+"+"                 |
+"-"                 |
+"/"                 |
+"%"                 { return C(); }
 
 [ \t\n]             {  }
 
