@@ -18,6 +18,9 @@ LIKE              [lL][iI][kK][eE]
 NOT               [nN][oO][tT]
 OR                [oO][rR]
 SOME              [sS][oO][mM][eE]
+EXCEPT            [eE][xX][cC][eE][pP][tT]
+INTERSECT         [iI][nN][tT][eE][rR][sS][eE][cC][tT]
+UNION             [uU][nN][iI][oO][nN]
 
 NAME              [a-zA-Z_][a-zA-Z0-9_@#$]*
 BRACES_NAME       \[[a-zA-Z_][^\]]*\]
@@ -54,6 +57,9 @@ BINARY            0x[0-9a-fA-F]*
 {NOT}               { return T(Tokens.NOT); }
 {OR}                { return T(Tokens.OR); }
 {SOME}              { return T(Tokens.SOME); }
+{EXCEPT}            { return T(Tokens.EXCEPT); }
+{INTERSECT}         { return T(Tokens.INTERSECT); }
+{UNION}             { return T(Tokens.UNION); }
 
 {NAME}              { return T(Tokens.NAME); }
 {BRACES_NAME}       { return T(Tokens.BRACES_NAME); }

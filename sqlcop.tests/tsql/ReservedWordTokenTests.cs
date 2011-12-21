@@ -154,6 +154,30 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
 		}
 		
+		[Test]
+		public void Identifies_Except_With_Case_Insensitivity()
+		{
+			_inputToken = "except";
+			_expectedToken = Tokens.EXCEPT;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Intersect_With_Case_Insensitivity()
+		{
+			_inputToken = "intersect";
+			_expectedToken = Tokens.INTERSECT;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		[Test]
+		public void Identifies_Union_With_Case_Insensitivity()
+		{
+			_inputToken = "union";
+			_expectedToken = Tokens.UNION;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
