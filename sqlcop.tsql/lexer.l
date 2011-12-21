@@ -23,6 +23,8 @@ INTERSECT         [iI][nN][tT][eE][rR][sS][eE][cC][tT]
 UNION             [uU][nN][iI][oO][nN]
 INTO              [iI][nN][tT][oO]
 TABLESAMPLE       [tT][aA][bB][lL][eE][sS][aA][mM][pP][lL][eE]
+SYSTEM            [sS][yY][sS][tT][eE][mM]
+REPEATABLE        [rR][eE][pP][eE][aA][tT][aA][bB][lL][eE]
 
 NAME              [a-zA-Z_][a-zA-Z0-9_@#$]*
 BRACES_NAME       \[[a-zA-Z_][^\]]*\]
@@ -64,6 +66,8 @@ BINARY            0x[0-9a-fA-F]*
 {UNION}             { return T(Tokens.UNION); }
 {INTO}              { return T(Tokens.INTO); }
 {TABLESAMPLE}       { return T(Tokens.TABLESAMPLE); }
+{SYSTEM}            { return T(Tokens.SYSTEM); }
+{REPEATABLE}        { return T(Tokens.REPEATABLE); }
 
 {NAME}              { return T(Tokens.NAME); }
 {BRACES_NAME}       { return T(Tokens.BRACES_NAME); }

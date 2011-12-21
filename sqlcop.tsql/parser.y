@@ -6,7 +6,7 @@
 
 %token SELECT FROM ALL DISTINCT TOP PERCENT WITH TIES AS
 %token AND ANY BETWEEN EXISTS IN LIKE NOT OR SOME EXCEPT
-%token INTERSECT UNION INTO TABLESAMPLE
+%token INTERSECT UNION INTO TABLESAMPLE SYSTEM REPEATABLE
 
 %%
 
@@ -21,7 +21,7 @@ select : select_clause
 select_clause : SELECT repetition limit columns
               ;
 
-from_clause : FROM table_or_view_name tablesample
+from_clause : FROM table_or_view_name tablesample_modifier
             ;
 
 aliased_from_clause : from_clause alias
@@ -31,9 +31,9 @@ into_clause : INTO local_table_or_view_name
             |
             ;
 
-tablesample : TABLESAMPLE INTEGER
-            |
-            ;
+tablesample_modifier : TABLESAMPLE INTEGER
+                     |
+                     ;
 
 repetition : ALL
            | DISTINCT
