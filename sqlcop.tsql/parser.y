@@ -13,12 +13,18 @@
 statement : select EOF
           ;
 
-select : SELECT	repetition limit columns
-         from_clause
+select : select_clause
+         aliased_from_clause
        ;
+       
+select_clause : SELECT repetition limit columns
+              ;
 
-from_clause : FROM table_or_view_name alias
+from_clause : FROM table_or_view_name
             ;
+
+aliased_from_clause : from_clause alias
+                    ;
 
 repetition : ALL
            | DISTINCT
@@ -70,7 +76,6 @@ expression : expression '+' expression_atom
            | expression '>' expression_atom
            | expression '=' expression_atom
            | expression signed_literal
-           | NAME '(' method_arg_list ')'
            | expression_atom
            ;
 
@@ -83,6 +88,9 @@ expression_atom : literal
                 | braced_name
                 | braced_name '.' braced_name
                 | braced_name '.' '*'
+                | NAME '(' method_arg_list ')'
+                | select_clause from_clause
+                | '(' select ')'
                 ;
 
 literal : INTEGER

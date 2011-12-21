@@ -255,16 +255,19 @@ namespace sqlcop.tests
 				"3 < 5",
 				"0x34 > 5",
 				"3 = '17'",
+				"SELECT MAX(Col) FROM table",
+				"(SELECT MAX(Col) FROM table)",
+				"(SELECT MAX(Col) FROM table t)",
 			};
 			string format = "SELECT Col = {0} FROM Table t";
 			foreach(string literal in literals)
 			{
 				string source = string.Format(format, literal);
 				_scanner.SetSource(source, 0);
-				Assert.That(_parser.Parse(), "Failed on const " + literal);
+				Assert.That(_parser.Parse(), "Failed on " + literal);
 			}
 		}
-		
+
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
