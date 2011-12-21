@@ -151,6 +151,14 @@ namespace sqlcop.tests
 			Assert.That(_parser.Parse());
 		}
 		
+		[Test]
+		public void Recognizes_Column_List_With_Prefixes_In_Select_List()
+		{
+			string input = "SELECT t.Col1, Col2, t.Col3 FROM Table t";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{

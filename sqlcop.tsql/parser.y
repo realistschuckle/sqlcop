@@ -21,7 +21,7 @@ columns : '*'
         ;
 
 column_list : prefixed_name alias
-            | column_list ',' NAME alias
+            | column_list ',' prefixed_name alias
             ;
 
 prefixed_name : NAME
