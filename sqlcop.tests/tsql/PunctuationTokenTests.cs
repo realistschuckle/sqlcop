@@ -43,6 +43,13 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputToken();
 		}
 		
+		[Test]
+		public void Recognizes_Equals()
+		{
+			_input = "=";
+			EnsureLexerRecognizesInputToken();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
