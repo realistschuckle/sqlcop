@@ -116,6 +116,20 @@ namespace sqlcop.tests
 			_inputs = new string[] {
 				"1984.1204",
 				"-2.0",
+				"-.03",
+			};
+			EnsureLexerRecognizesInputToken();
+		}
+		
+		[Test]
+		public void Identifies_Float_Literals()
+		{
+			_expectedToken = Tokens.FLOAT;
+			_inputs = new string[] {
+				"-101.5E5",
+				"0.5E-2",
+				"-.2E-20",
+				"6E5",
 			};
 			EnsureLexerRecognizesInputToken();
 		}

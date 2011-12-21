@@ -16,6 +16,7 @@ TEMP_TABLE_NAME   #{1,2}[a-zA-Z_][a-zA-Z0-9_@#$]*
 
 INTEGER           -?[0-9]+
 DECIMAL           -?[0-9]*\.[0-9]+
+FLOAT             -?([0-9]*\.)?[0-9]+E-?[0-9]+
 STRING            '([^']|'')*'
 BINARY            0x[0-9a-fA-F]*
 
@@ -37,6 +38,7 @@ BINARY            0x[0-9a-fA-F]*
 
 {INTEGER}           { return T(Tokens.INTEGER); }
 {DECIMAL}           { return T(Tokens.DECIMAL); }
+{FLOAT}             { return T(Tokens.FLOAT); }
 {STRING}            { return T(Tokens.STRING); }
 {BINARY}            { return T(Tokens.BINARY); }
 
