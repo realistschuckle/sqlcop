@@ -31,9 +31,14 @@ into_clause : INTO local_table_or_view_name
             |
             ;
 
-tablesample_modifier : TABLESAMPLE INTEGER
+tablesample_modifier : TABLESAMPLE INTEGER tablesample_count_modifier
+                     | TABLESAMPLE SYSTEM INTEGER tablesample_count_modifier
                      |
                      ;
+
+tablesample_count_modifier : PERCENT
+                           |
+                           ;
 
 repetition : ALL
            | DISTINCT
