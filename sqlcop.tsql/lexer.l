@@ -33,6 +33,7 @@ INTEGER           -?[0-9]+
 "*"                 { return C(); }
 "("                 { return C(); }
 ")"                 { return C(); }
+","                 { return C(); }
 
 %%
 

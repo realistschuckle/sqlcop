@@ -9,7 +9,7 @@ namespace sqlcop.tests
 	public class SelectFromParserTests
 	{
 		[Test]
-		public void Parser_Recognizes_Select_Star_From_Table()
+		public void Recognizes_Select_Star_From_Table()
 		{
 			string[] tableNames = new string[] {
 				"TABLE",
@@ -25,7 +25,7 @@ namespace sqlcop.tests
 		}
 		
 		[Test]
-		public void Parser_Recognizes_Repetitions_Modifiers_With_Star()
+		public void Recognizes_Repetitions_Modifiers_With_Star()
 		{
 			string[] repetitions = new string[] {
 				"ALL",
@@ -41,7 +41,7 @@ namespace sqlcop.tests
 		}
 		
 		[Test]
-		public void Parser_Recognizes_Limits_Modifiers_With_Star()
+		public void Recognizes_Limits_Modifiers_With_Star()
 		{
 			string[] limits = new string[] {
 				"TOP 20"
@@ -63,7 +63,7 @@ namespace sqlcop.tests
 		}
 		
 		[Test]
-		public void Parser_Recognizes_Repetitions_And_Limit_Modifiers_With_Star()
+		public void Recognizes_Repetitions_And_Limit_Modifiers_With_Star()
 		{
 			string[] repetitions = new string[] {
 				"ALL TOP 20 PERCENT WITH TIES",
@@ -73,6 +73,38 @@ namespace sqlcop.tests
 			foreach(string rep in repetitions)
 			{
 				string source = string.Format(format, rep);
+				_scanner.SetSource(source, 0);
+				Assert.That(_parser.Parse());
+			}
+		}
+		
+		[Test]
+		public void Recognizes_Column_In_Select_List()
+		{
+			string input = "SELECT Column FROM Table";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Column_List_In_Select_List()
+		{
+			string input = "SELECT Column1, Column2, Column3 FROM Table";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Table_With_Alias()
+		{
+			string[] tableNames = new string[] {
+				"TABLE tab",
+				"[bracketd with space] alias",
+				"#table#numbersign sumpin"
+			};
+			foreach(string tableName in tableNames)
+			{
+				string source = string.Format("SELECT * FROM {0}", tableName);
 				_scanner.SetSource(source, 0);
 				Assert.That(_parser.Parse());
 			}
