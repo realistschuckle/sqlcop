@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using sqlcop.tsql;
 
@@ -176,6 +177,36 @@ namespace sqlcop.tests
 		}
 		
 		[Test]
+		public void Recognizes_Computation_In_Column_List()
+		{
+			List<string> computations = new List<string> {
+				"'string' + 'more'",
+				"2 + 3.4",
+				"3 - 4",
+				"2 / 3",
+				"$8 * 7",
+				"8-4.3",
+				"6+3",
+				"3&2",
+				"3 | 2",
+				"3~2",
+				"3 + 4 - 5 / 6",
+				"3+4-5/6",
+				"3 < 5",
+				"0x34 > 5",
+				"3 = '17'"
+			};
+			computations.Add(string.Join(",", computations.ToArray()));
+			string format = "SELECT {0} FROM Table";
+			foreach(string computation in computations)
+			{
+				string source = string.Format(format, computation);
+				_scanner.SetSource(source, 0);
+				Assert.That(_parser.Parse(), "Failed on " + computation);
+			}
+		}
+		
+		[Test]
 		public void Recognizes_Assigned_Column()
 		{
 			string[] literals = new string[] {
@@ -186,7 +217,7 @@ namespace sqlcop.tests
 				"99.45E3",
 				"$12,345.67",
 				"[Another Column]",
-				"t.YAC"
+				"t.YAC",
 			};
 			string format = "SELECT Col = {0} FROM Table t";
 			foreach(string literal in literals)

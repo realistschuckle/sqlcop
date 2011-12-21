@@ -25,15 +25,9 @@ columns : '*'
         | column_list
         ;
 
-column_list : prefixed_name alias
-            | column_list ',' prefixed_name alias
+column_list : expression alias
+            | column_list ',' expression alias
             ;
-
-prefixed_name : braced_name '.' braced_name
-              | braced_name '.' '*'
-              | braced_name
-              | braced_name '=' expression
-              ;
 
 limit : TOP INTEGER limit_modifier
       | TOP '(' INTEGER ')' limit_modifier
@@ -61,10 +55,26 @@ alias : NAME
       |
       ;
 
-expression : literal
-           | braced_name
-           | braced_name '.' braced_name
+expression : expression '+' expression_atom
+           | expression '-' expression_atom
+           | expression '/' expression_atom
+           | expression '*' expression_atom
+           | expression '&' expression_atom
+           | expression '|' expression_atom
+           | expression '~' expression_atom
+           | expression '<' expression_atom
+           | expression '>' expression_atom
+           | expression '=' expression_atom
+           | expression signed_literal
+           | expression_atom
            ;
+
+
+expression_atom : literal
+                | braced_name
+                | braced_name '.' braced_name
+                | braced_name '.' '*'
+                ;
 
 literal : INTEGER
         | STRING
@@ -72,11 +82,14 @@ literal : INTEGER
         | DECIMAL
         | FLOAT
         | MONEY
-        | S_INTEGER
-        | S_DECIMAL
-        | S_FLOAT
-        | S_MONEY
+        | signed_literal
         ;
+
+signed_literal : S_INTEGER
+               | S_DECIMAL
+               | S_FLOAT
+               | S_MONEY
+               ;
 
 %%
 
