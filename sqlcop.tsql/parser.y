@@ -27,6 +27,7 @@ column_list : prefixed_name alias
 prefixed_name : braced_name '.' braced_name
               | braced_name '.' '*'
               | braced_name
+              | braced_name '=' any_value
               ;
 
 limit : TOP INTEGER limit_modifier
@@ -54,6 +55,9 @@ alias : NAME
       | AS NAME
       |
       ;
+
+any_value : INTEGER
+          ;
 
 %%
 
