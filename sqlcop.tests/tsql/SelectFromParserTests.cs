@@ -183,6 +183,7 @@ namespace sqlcop.tests
 				"MAX(col)",
 				"GETDATE()",
 				"custom_func(1, 2, 3, '5')",
+				"MAX(col) aliased",
 			};
 			string format = "SELECT {0} FROM table";
 			foreach(string method in methods)
