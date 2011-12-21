@@ -13,8 +13,12 @@
 statement : select EOF
           ;
 
-select : SELECT	repetition limit columns FROM table_or_view_name alias
+select : SELECT	repetition limit columns
+         from_clause
        ;
+
+from_clause : FROM table_or_view_name alias
+            ;
 
 repetition : ALL
            | DISTINCT
