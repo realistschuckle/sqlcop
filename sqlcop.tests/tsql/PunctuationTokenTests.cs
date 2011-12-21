@@ -78,6 +78,27 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputToken();
 		}
 		
+		[Test]
+		public void Recognizes_Bitwise_And()
+		{
+			_input = "&";
+			EnsureLexerRecognizesInputToken();
+		}
+		
+		[Test]
+		public void Recognizes_Bitwise_Or()
+		{
+			_input = "|";
+			EnsureLexerRecognizesInputToken();
+		}
+		
+		[Test]
+		public void Recognizes_Bitwise_Xor()
+		{
+			_input = "^";
+			EnsureLexerRecognizesInputToken();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
