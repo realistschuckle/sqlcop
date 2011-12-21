@@ -77,7 +77,7 @@ namespace sqlcop.tests
 				"-1000",
 				"-1",
 				"0",
-				"1",
+				"+1",
 				"1000"
 			};
 			EnsureLexerRecognizesInputToken();
@@ -117,6 +117,7 @@ namespace sqlcop.tests
 				"1984.1204",
 				"-2.0",
 				"-.03",
+				"+.03",
 			};
 			EnsureLexerRecognizesInputToken();
 		}
@@ -129,7 +130,7 @@ namespace sqlcop.tests
 				"-101.5E5",
 				"0.5E-2",
 				"-.2E-20",
-				"6E5",
+				"+6E5",
 			};
 			EnsureLexerRecognizesInputToken();
 		}
@@ -140,8 +141,8 @@ namespace sqlcop.tests
 			_expectedToken = Tokens.MONEY;
 			_inputs = new string[] {
 				"$12",
-				"$542023.14",
-				"$33,333.208"
+				"-$542023.14",
+				"+$33,333.208"
 			};
 			EnsureLexerRecognizesInputToken();
 		}
