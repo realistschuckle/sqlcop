@@ -167,6 +167,14 @@ namespace sqlcop.tests
 			Assert.That(_parser.Parse());
 		}
 		
+		[Test]
+		public void Recognizes_Prefixed_Star_In_Column_List()
+		{
+			string input = "SELECT t.*, Col FROM Table t";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{

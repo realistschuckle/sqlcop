@@ -25,6 +25,7 @@ column_list : prefixed_name alias
             ;
 
 prefixed_name : braced_name '.' braced_name
+              | braced_name '.' '*'
               | braced_name
               ;
 
