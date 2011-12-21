@@ -178,6 +178,14 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
 		}
 		
+		[Test]
+		public void Identifies_Into_With_Case_Insensitivity()
+		{
+			_inputToken = "into";
+			_expectedToken = Tokens.INTO;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
