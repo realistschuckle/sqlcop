@@ -41,7 +41,9 @@ limit_modifier : PERCENT
                |
                ;
 
-table_or_view_name : braced_name
+table_or_view_name : braced_name '.' braced_name '.' braced_name
+                   | braced_name '.' braced_name
+                   | braced_name
                    | TEMP_TABLE_NAME
                    ;
 
