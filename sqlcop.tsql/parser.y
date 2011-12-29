@@ -62,7 +62,7 @@ table_hint_noexpand_opt : NOEXPAND table_hint
                         ;
 
 table_hint : FASTFIRSTROW
-//           | FORCESEEK
+           | FORCESEEK
            | INDEX '(' INTEGER ')'
            | INDEX '(' index_list ')'
            | FORCESCAN
