@@ -63,8 +63,9 @@ table_hint_noexpand_opt : NOEXPAND table_hint
 
 table_hint : FASTFIRSTROW
            | FORCESEEK
+           | FORCESEEK '(' NAME '(' name_list ')' ')'
            | INDEX '(' INTEGER ')'
-           | INDEX '(' index_list ')'
+           | INDEX '(' name_list ')'
            | FORCESCAN
            | HOLDLOCK
            | NOLOCK
@@ -83,9 +84,9 @@ table_hint : FASTFIRSTROW
            | XLOCK
            ;
 
-index_list : NAME
-           | index_list ',' NAME
-           ;
+name_list : NAME
+          | name_list ',' NAME
+          ;
 
 repetition : ALL
            | DISTINCT

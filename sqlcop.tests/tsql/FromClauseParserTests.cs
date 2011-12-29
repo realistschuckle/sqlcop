@@ -61,6 +61,8 @@ namespace sqlcop.tests
 				"INDEX(some_index, another_index)",
 				"FASTFIRSTROW",
 				"FORCESEEK",
+				"FORCESEEK(some_index(some_column))",
+				"FORCESEEK(some_index(some_column, another_column))",
 				"FORCESCAN",
 				"HOLDLOCK" ,
 				"NOLOCK" ,
