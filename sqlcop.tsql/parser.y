@@ -19,17 +19,22 @@ statement : select EOF
 
 select : select_clause
          into_clause
-         aliased_from_clause
+         from_clause
        ;
        
 select_clause : SELECT repetition limit columns
               ;
 
-from_clause : FROM table_or_view_name tablesample_modifier
+from_clause : FROM table_source_list
+            |
             ;
 
-aliased_from_clause : from_clause alias table_hints
-                    ;
+table_source_list : table_source
+                  | table_source_list ',' table_source
+                  ;
+
+table_source : table_or_view_name alias tablesample_modifier table_hints
+             ;
 
 into_clause : INTO local_table_or_view_name
             |
@@ -159,7 +164,7 @@ expression_atom : literal
                 | braced_name '.' braced_name
                 | braced_name '.' '*'
                 | NAME '(' method_arg_list ')'
-                | select_clause from_clause
+                | select_clause FROM table_or_view_name
                 | '(' select ')'
                 ;
 
