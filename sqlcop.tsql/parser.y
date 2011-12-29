@@ -28,7 +28,7 @@ select_clause : SELECT repetition limit columns
 from_clause : FROM table_or_view_name tablesample_modifier
             ;
 
-aliased_from_clause : from_clause alias
+aliased_from_clause : from_clause alias table_hints
                     ;
 
 into_clause : INTO local_table_or_view_name
@@ -48,6 +48,44 @@ tablesample_count_modifier : PERCENT
 tablesample_repeatable_modifier : REPEATABLE '(' INTEGER ')'
                                 |
                                 ;
+
+table_hints : WITH table_hints_list
+            |
+            ;
+
+table_hints_list : table_hint_noexpand_opt
+                 | table_hints_list ',' table_hint_noexpand_opt
+                 ;
+
+table_hint_noexpand_opt : NOEXPAND table_hint
+                        | table_hint
+                        ;
+
+table_hint : FASTFIRSTROW
+//           | FORCESEEK
+           | INDEX '(' INTEGER ')'
+           | INDEX '(' index_list ')'
+           | FORCESCAN
+           | HOLDLOCK
+           | NOLOCK
+           | NOWAIT
+           | PAGLOCK 
+           | READCOMMITTED
+           | READCOMMITTEDLOCK
+           | READPAST
+           | READUNCOMMITTED
+           | REPEATABLEREAD
+           | ROWLOCK
+           | SERIALIZABLE
+           | TABLOCK
+           | TABLOCKX
+           | UPDLOCK
+           | XLOCK
+           ;
+
+index_list : NAME
+           | index_list ',' NAME
+           ;
 
 repetition : ALL
            | DISTINCT

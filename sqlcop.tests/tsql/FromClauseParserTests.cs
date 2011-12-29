@@ -48,6 +48,56 @@ namespace sqlcop.tests
 			Assert.That(_parser.Parse());
 		}
 		
+		[Test]
+		public void Recognizes_Table_Hints()
+		{
+			string[] expands = new string[] {
+				"NOEXPAND",
+				""
+			};
+			string[] hints = new string[] {
+				"INDEX(0)",
+				"INDEX(some_index)",
+				"INDEX(some_index, another_index)",
+				"FASTFIRSTROW",
+//				"FORCESEEK",
+				"FORCESCAN",
+				"HOLDLOCK" ,
+				"NOLOCK" ,
+				"NOWAIT",
+				"PAGLOCK", 
+				"READCOMMITTED" ,
+				"READCOMMITTEDLOCK" ,
+				"READPAST" ,
+				"READUNCOMMITTED" ,
+				"REPEATABLEREAD" ,
+				"ROWLOCK" ,
+				"SERIALIZABLE" ,
+				"TABLOCK" ,
+				"TABLOCKX",
+				"UPDLOCK",
+				"XLOCK",
+			};
+			string format = "select * from t WITH {0} {1}";
+			foreach(string expand in expands)
+			{
+				foreach(string hint in hints)
+				{
+					string input = string.Format(format, expand, hint);
+					_scanner.SetSource(input, 0);
+					Assert.That(_parser.Parse(), "Failed on " + input);
+				}
+			}
+		}
+		
+		[Test]
+		public void Recognizes_Compound_Table_Hints()
+		{
+			string input = "select * from t WITH NOLOCK, NOEXPAND NOWAIT";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse(), "Failed on " + input);
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
