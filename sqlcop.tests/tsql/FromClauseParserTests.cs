@@ -80,7 +80,7 @@ namespace sqlcop.tests
 				"UPDLOCK",
 				"XLOCK",
 			};
-			string format = "select * from t WITH {0} {1}";
+			string format = "select * from t WITH ({0} {1})";
 			foreach(string expand in expands)
 			{
 				foreach(string hint in hints)
@@ -95,7 +95,7 @@ namespace sqlcop.tests
 		[Test]
 		public void Recognizes_Compound_Table_Hints()
 		{
-			string input = "select * from t WITH NOLOCK, NOEXPAND NOWAIT";
+			string input = "select * from t WITH (NOLOCK, NOEXPAND NOWAIT)";
 			_scanner.SetSource(input, 0);
 			Assert.That(_parser.Parse(), "Failed on " + input);
 		}

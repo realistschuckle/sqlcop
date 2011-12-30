@@ -54,7 +54,7 @@ tablesample_repeatable_modifier : REPEATABLE '(' INTEGER ')'
                                 |
                                 ;
 
-table_hints : WITH table_hints_list
+table_hints : WITH '(' table_hints_list ')'
             |
             ;
 
