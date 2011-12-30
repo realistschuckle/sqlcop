@@ -49,7 +49,7 @@
     <Compile Include="tsql\SelectFromParserTests.cs" />
     <Compile Include="tsql\NonReservedWordTokenTests.cs" />
     <Compile Include="tsql\PunctuationTokenTests.cs" />
-    <Compile Include="tsql\FromClauseParserTests.cs" />
+    <Compile Include="tsql\FromTableOrViewClauseParserTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
