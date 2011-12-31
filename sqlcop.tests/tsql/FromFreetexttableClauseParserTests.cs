@@ -9,6 +9,22 @@ namespace sqlcop.tests
 	public class FromFreetexttableClauseParserTests
 	{
 		[Test]
+		public void Recognizes_Freetexttable_With_As_Alias()
+		{
+			string input = "select * from freetexttable(tab, *, 'word') As zoo";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Freetexttable_Without_As_Alias()
+		{
+			string input = "select * from freetexttable(tab, *, 'word') zoo";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
 		public void Recognizes_Freetexttable_With_Star()
 		{
 			string input = "select * from freetexttable(tab, *, 'word')";

@@ -16,6 +16,20 @@ namespace sqlcop.tests
 		}
 		
 		[Test]
+		public void Recognizes_Aliased_With_As()
+		{
+			_input = "openrowset('provider_name', 'provider_string', 'query') As Moo";
+			CheckSelectStatement();
+		}
+		
+		[Test]
+		public void Recognizes_Aliased_Without_As()
+		{
+			_input = "openrowset('provider_name', 'provider_string', 'query') Moo";
+			CheckSelectStatement();
+		}
+		
+		[Test]
 		public void Recognizes_ProviderName_Credentials_Query()
 		{
 			_input = "openrowset('provider_name', 'datasource';'user';'pwd', 'query')";

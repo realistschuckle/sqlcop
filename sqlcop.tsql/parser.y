@@ -42,7 +42,7 @@ row_source_list : row_source
                 ;
 
 row_source : table_or_view_name alias tablesample_modifier table_hints
-           | rowset_function
+           | rowset_function alias
            ;
 
 rowset_function : CONTAINSTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'

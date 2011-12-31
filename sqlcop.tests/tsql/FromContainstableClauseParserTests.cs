@@ -9,6 +9,22 @@ namespace sqlcop.tests
 	public class FromContainstableClauseParserTests
 	{
 		[Test]
+		public void Recognizes_Alias_With_As()
+		{
+			string input = "select * from containstable(tab, *, 'word') AS loo";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Alias_Without_As()
+		{
+			string input = "select * from containstable(tab, *, 'word') loo";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
 		public void Recognizes_Containstable_With_Star()
 		{
 			string input = "select * from containstable(tab, *, 'word')";
