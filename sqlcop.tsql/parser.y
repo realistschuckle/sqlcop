@@ -54,8 +54,15 @@ row_source : table_or_view_name alias tablesample_modifier table_hints
 joined_tables : table_or_view_name JOIN table_or_view_name ON search_condition
               ;
 
-search_condition : expression
+search_condition : predicate
+                 | '(' search_condition ')'
                  ;
+
+predicate : predicate_expression
+          ;
+
+predicate_expression : column_name '=' column_name
+                     ;
 
 rowset_function : CONTAINSTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'
                 | FREETEXTTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'
@@ -206,6 +213,13 @@ limit_modifier : PERCENT
                | PERCENT WITH TIES
                |
                ;
+
+column_name : braced_name '.' braced_name '.' braced_name '.' braced_name '.' braced_name
+            | braced_name '.' braced_name '.' braced_name '.' braced_name
+            | braced_name '.' braced_name '.' braced_name
+            | braced_name '.' braced_name
+            | braced_name
+            ;
 
 table_or_view_name : external_table_or_view_name
                    | local_table_or_view_name

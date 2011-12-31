@@ -9,9 +9,16 @@ namespace sqlcop.tests
 	public class FromJoinedTableParserTests
 	{
 		[Test]
-		public void Recognizes_Simple_Join()
+		public void Recognizes_Simplest_Join()
 		{
-			_input = "SELECT * FROM l JOIN r ON l.moo = f.moo";
+			_input = "SELECT * FROM l JOIN r ON l.moo = r.moo";
+			EnsureParserRecognizesInput();
+		}
+			
+		[Test]
+		public void Recognizes_Simplest_Join_With_Parentheses()
+		{
+			_input = "SELECT * FROM l JOIN r ON (l.moo = r.moo)";
 			EnsureParserRecognizesInput();
 		}
 			
