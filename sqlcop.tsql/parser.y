@@ -13,7 +13,7 @@
 %token READUNCOMMITTED REPEATABLEREAD ROWLOCK SERIALIZABLE TABLOCK
 %token TABLOCKX UPDLOCK XLOCK
 
-%token CONTAINSTABLE FREETEXTTABLE OPENDATASOURCE
+%token CONTAINSTABLE FREETEXTTABLE OPENDATASOURCE OPENQUERY
 %token WEIGHT LANGUAGE FORMSOF INFLECTIONAL THESAURUS NEAR ISABOUT
 
 %%
@@ -43,6 +43,8 @@ row_source : table_or_view_name alias tablesample_modifier table_hints
 
 rowset_function : CONTAINSTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'
                 | FREETEXTTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'
+                | OPENDATASOURCE '(' STRING ',' STRING ')'
+                | OPENQUERY '(' NAME ',' STRING ')'
                 ;
 
 containstable_columns : '*'

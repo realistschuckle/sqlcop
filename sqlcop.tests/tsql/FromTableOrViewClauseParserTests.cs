@@ -100,6 +100,22 @@ namespace sqlcop.tests
 			Assert.That(_parser.Parse(), "Failed on " + input);
 		}
 		
+		[Test]
+		public void Recognizes_Opendatasource_Rowset_Function()
+		{
+			string input = "select * from OPENDATASOURCE('provider', 'init')";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse(), "Failed on " + input);
+		}
+		
+		[Test]
+		public void Recognizes_Openquery_Rowset_Function()
+		{
+			string input = "select * from OpenQuery(linked_server, 'query')";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse(), "Failed on " + input);
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{

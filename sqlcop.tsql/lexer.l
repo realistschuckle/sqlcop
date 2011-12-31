@@ -52,6 +52,7 @@ CONTAINSTABLE     [cC][oO][nN][tT][aA][iI][nN][sS][tT][aA][bB][lL][eE]
 FREETEXTTABLE     [fF][rR][eE][eE][tT][eE][xX][tT][tT][aA][bB][lL][eE]
 LANGUAGE          [lL][aA][nN][gG][uU][aA][gG][eE]
 OPENDATASOURCE    [oO][pP][eE][nN][dD][aA][tT][aA][sS][oO][uU][rR][cC][eE]
+OPENQUERY         [oO][pP][eE][nN][qQ][uU][eE][rR][yY]
 
 FORMSOF           [fF][oO][rR][mM][sS][oO][fF]
 INFLECTIONAL      [iI][nN][fF][lL][eE][cC][tT][iI][oO][nN][aA][lL]
@@ -129,6 +130,7 @@ BINARY            0x[0-9a-fA-F]*
 {FREETEXTTABLE}     { return T(Tokens.FREETEXTTABLE); }
 {LANGUAGE}          { return T(Tokens.LANGUAGE); }
 {OPENDATASOURCE}    { return T(Tokens.OPENDATASOURCE); }
+{OPENQUERY}         { return T(Tokens.OPENQUERY); }
 
 {FORMSOF}           { return T(Tokens.FORMSOF); }
 {INFLECTIONAL}      { return T(Tokens.INFLECTIONAL); }

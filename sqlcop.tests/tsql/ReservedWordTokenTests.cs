@@ -463,6 +463,14 @@ namespace sqlcop.tests
 			_expectedToken = Tokens.OPENDATASOURCE;
 			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
 		}
+
+		[Test]
+		public void Identifies_Openquery_With_Case_Sensitivity()
+		{
+			_inputToken = "openquery";
+			_expectedToken = Tokens.OPENQUERY;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
 		
 		[SetUp]
 		public void RunBeforeEachTest()
