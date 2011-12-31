@@ -448,6 +448,14 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
 		}
 
+		[Test]
+		public void Identifies_Freetexttable_With_Case_Sensitivity()
+		{
+			_inputToken = "freetexttable";
+			_expectedToken = Tokens.FREETEXTTABLE;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{

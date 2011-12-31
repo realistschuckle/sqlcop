@@ -49,7 +49,9 @@ UPDLOCK           [uU][pP][dD][lL][oO][cC][kK]
 XLOCK             [xX][lL][oO][cC][kK]
 
 CONTAINSTABLE     [cC][oO][nN][tT][aA][iI][nN][sS][tT][aA][bB][lL][eE]
+FREETEXTTABLE     [fF][rR][eE][eE][tT][eE][xX][tT][tT][aA][bB][lL][eE]
 LANGUAGE          [lL][aA][nN][gG][uU][aA][gG][eE]
+
 FORMSOF           [fF][oO][rR][mM][sS][oO][fF]
 INFLECTIONAL      [iI][nN][fF][lL][eE][cC][tT][iI][oO][nN][aA][lL]
 THESAURUS         [tT][hH][eE][sS][aA][uU][rR][uU][sS]
@@ -123,7 +125,9 @@ BINARY            0x[0-9a-fA-F]*
 {XLOCK}             { return T(Tokens.XLOCK); }
 
 {CONTAINSTABLE}     { return T(Tokens.CONTAINSTABLE); }
+{FREETEXTTABLE}     { return T(Tokens.FREETEXTTABLE); }
 {LANGUAGE}          { return T(Tokens.LANGUAGE); }
+
 {FORMSOF}           { return T(Tokens.FORMSOF); }
 {INFLECTIONAL}      { return T(Tokens.INFLECTIONAL); }
 {THESAURUS}         { return T(Tokens.THESAURUS); }
