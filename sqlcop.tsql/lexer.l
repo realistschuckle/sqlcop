@@ -48,6 +48,8 @@ TABLOCKX          [tT][aA][bB][lL][oO][cC][kK][xX]
 UPDLOCK           [uU][pP][dD][lL][oO][cC][kK]
 XLOCK             [xX][lL][oO][cC][kK]
 
+CONTAINSTABLE     [cC][oO][nN][tT][aA][iI][nN][sS][tT][aA][bB][lL][eE]
+
 NAME              [a-zA-Z_][a-zA-Z0-9_@#$]*
 BRACES_NAME       \[[a-zA-Z_][^\]]*\]
 TEMP_TABLE_NAME   #{1,2}[a-zA-Z_][a-zA-Z0-9_@#$]*
@@ -112,6 +114,7 @@ BINARY            0x[0-9a-fA-F]*
 {TABLOCKX}          { return T(Tokens.TABLOCKX); }
 {UPDLOCK}           { return T(Tokens.UPDLOCK); }
 {XLOCK}             { return T(Tokens.XLOCK); }
+{CONTAINSTABLE}     { return T(Tokens.CONTAINSTABLE); }
 
 {NAME}              { return T(Tokens.NAME); }
 {BRACES_NAME}       { return T(Tokens.BRACES_NAME); }

@@ -378,6 +378,14 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
 		}
 		
+		[Test]
+		public void Identifies_Containstable_With_Case_Sensitivity()
+		{
+			_inputToken = "containstable";
+			_expectedToken = Tokens.CONTAINSTABLE;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
