@@ -92,7 +92,11 @@ namespace sqlcop.tests
 				"''",
 				"'str'",
 				"'some space'",
-				"'Conan O''Brian'"
+				"'Conan O''Brian'",
+				"N''",
+				"N'str'",
+				"N'some space'",
+				"N'Conan O''Brian'"
 			};
 			EnsureLexerRecognizesInputToken();
 		}
