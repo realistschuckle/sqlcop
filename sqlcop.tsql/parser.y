@@ -29,16 +29,33 @@ select : select_clause
 select_clause : SELECT repetition limit columns
               ;
 
-from_clause : FROM table_source_list
+from_clause : FROM row_source_list
             |
             ;
 
-table_source_list : table_source
-                  | table_source_list ',' table_source
-                  ;
+row_source_list : row_source
+                | row_source_list ',' row_source
+                ;
 
-table_source : table_or_view_name alias tablesample_modifier table_hints
-             | CONTAINSTABLE '(' table_or_view_name ',' '*' ',' STRING ')'
+row_source : table_or_view_name alias tablesample_modifier table_hints
+           | rowset_function
+           ;
+
+rowset_function : containstable
+                ;
+
+containstable : CONTAINSTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'
+              ;
+
+containstable_columns : '*'
+                      | NAME
+                      | '(' name_list ')'
+                      ;
+
+language_opt : ',' LANGUAGE STRING
+             | ',' LANGUAGE STRING ',' INTEGER
+             | ',' INTEGER
+             |
              ;
 
 into_clause : INTO local_table_or_view_name

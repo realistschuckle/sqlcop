@@ -9,9 +9,49 @@ namespace sqlcop.tests
 	public class FromContainstableClauseParserTests
 	{
 		[Test]
-		public void Recognizes_Minimum_Containstable_With_Star()
+		public void Recognizes_Containstable_With_Star()
 		{
-			string input = "select * from containstable(table, *, 'word')";
+			string input = "select * from containstable(tab, *, 'word')";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Containstable_With_Column()
+		{
+			string input = "select * from containstable(tab, col, 'word')";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Containstable_With_Column_List()
+		{
+			string input = "select * from containstable(tab, (col1, col2), 'word')";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Containstable_With_Language_Specifier()
+		{
+			string input = "select * from containstable(tab, *, 'word', LANGUAGE 'English')";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Containstable_With_Row_Limit()
+		{
+			string input = "select * from containstable(tab, *, 'word', 10)";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse());
+		}
+		
+		[Test]
+		public void Recognizes_Containstable_With_Language_Specifier_And_Row_Limit()
+		{
+			string input = "select * from containstable(tab, *, 'word', LANGUAGE 'English', 10)";
 			_scanner.SetSource(input, 0);
 			Assert.That(_parser.Parse());
 		}
