@@ -385,7 +385,69 @@ namespace sqlcop.tests
 			_expectedToken = Tokens.CONTAINSTABLE;
 			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
 		}
+
+		[Test]
+		public void Identifies_Language_With_Case_Sensitivity()
+		{
+			_inputToken = "language";
+			_expectedToken = Tokens.LANGUAGE;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
 		
+		
+		[Test]
+		public void Identifies_Formsof_With_Case_Sensitivity()
+		{
+			_inputToken = "formsof";
+			_expectedToken = Tokens.FORMSOF;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Inflectional_With_Case_Sensitivity()
+		{
+			_inputToken = "inflectional";
+			_expectedToken = Tokens.INFLECTIONAL;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Thesaurus_With_Case_Sensitivity()
+		{
+			_inputToken = "thesaurus";
+			_expectedToken = Tokens.THESAURUS;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Near_With_Case_Sensitivity()
+		{
+			_inputToken = "near";
+			_expectedToken = Tokens.NEAR;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Isabout_With_Case_Sensitivity()
+		{
+			_inputToken = "isabout";
+			_expectedToken = Tokens.ISABOUT;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Weight_With_Case_Sensitivity()
+		{
+			_inputToken = "weight";
+			_expectedToken = Tokens.WEIGHT;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+
 		[SetUp]
 		public void RunBeforeEachTest()
 		{

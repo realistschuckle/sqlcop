@@ -49,6 +49,13 @@ UPDLOCK           [uU][pP][dD][lL][oO][cC][kK]
 XLOCK             [xX][lL][oO][cC][kK]
 
 CONTAINSTABLE     [cC][oO][nN][tT][aA][iI][nN][sS][tT][aA][bB][lL][eE]
+LANGUAGE          [lL][aA][nN][gG][uU][aA][gG][eE]
+FORMSOF           [fF][oO][rR][mM][sS][oO][fF]
+INFLECTIONAL      [iI][nN][fF][lL][eE][cC][tT][iI][oO][nN][aA][lL]
+THESAURUS         [tT][hH][eE][sS][aA][uU][rR][uU][sS]
+NEAR              [nN][eE][aA][rR]
+ISABOUT           [iI][sS][aA][bB][oO][uU][tT]
+WEIGHT            [wW][eE][iI][gG][hH][tT]
 
 NAME              [a-zA-Z_][a-zA-Z0-9_@#$]*
 BRACES_NAME       \[[a-zA-Z_][^\]]*\]
@@ -114,7 +121,15 @@ BINARY            0x[0-9a-fA-F]*
 {TABLOCKX}          { return T(Tokens.TABLOCKX); }
 {UPDLOCK}           { return T(Tokens.UPDLOCK); }
 {XLOCK}             { return T(Tokens.XLOCK); }
+
 {CONTAINSTABLE}     { return T(Tokens.CONTAINSTABLE); }
+{LANGUAGE}          { return T(Tokens.LANGUAGE); }
+{FORMSOF}           { return T(Tokens.FORMSOF); }
+{INFLECTIONAL}      { return T(Tokens.INFLECTIONAL); }
+{THESAURUS}         { return T(Tokens.THESAURUS); }
+{NEAR}              { return T(Tokens.NEAR); }
+{ISABOUT}           { return T(Tokens.ISABOUT); }
+{WEIGHT}            { return T(Tokens.WEIGHT); }
 
 {NAME}              { return T(Tokens.NAME); }
 {BRACES_NAME}       { return T(Tokens.BRACES_NAME); }
