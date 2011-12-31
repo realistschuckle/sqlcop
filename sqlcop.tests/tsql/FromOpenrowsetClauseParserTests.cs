@@ -148,6 +148,13 @@ namespace sqlcop.tests
 			CheckSelectStatement();
 		}
 		
+		[Test]
+		public void Recognizes_Bulk_Formatfile_With_Order_Of_Columns_And_Unique_And_Lastrow_And_Column_Aliases()
+		{
+			_input = "openrowset(bulk 'data_file', formatfile='file_path', order (col1, col2, col3 unique), lastrow=99) (loc1, [loc 2], loc3)";
+			CheckSelectStatement();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{

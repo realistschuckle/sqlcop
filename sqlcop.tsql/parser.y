@@ -50,7 +50,7 @@ rowset_function : CONTAINSTABLE '(' table_or_view_name ',' containstable_columns
                 | FREETEXTTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'
                 | OPENDATASOURCE '(' STRING ',' STRING ')'
                 | OPENQUERY '(' NAME ',' STRING ')'
-                | openrowset
+                | openrowset openrowset_column_aliases_opt
                 | openxml
                 ;
 
@@ -71,6 +71,11 @@ openxml_schema_declaration : NAME NAME
                            | NAME NAME '(' INTEGER ')'
                            | NAME NAME '(' INTEGER ')' STRING
                            ;
+
+openrowset_column_aliases_opt : '(' braced_name_list ')'
+                              |
+                              ;
+                         
 
 openrowset : OPENROWSET '(' STRING ',' STRING ',' STRING ')'
            | OPENROWSET '(' STRING ',' STRING ';' STRING ';' STRING ',' STRING ')'
