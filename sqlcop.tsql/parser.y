@@ -1,6 +1,6 @@
 %namespace sqlcop.tsql
 
-%token NAME TEMP_TABLE_NAME BRACES_NAME
+%token VARNAME NAME TEMP_TABLE_NAME BRACES_NAME
 %token INTEGER STRING BINARY DECIMAL FLOAT MONEY
 %token S_INTEGER S_DECIMAL S_FLOAT S_MONEY
 
@@ -51,7 +51,26 @@ rowset_function : CONTAINSTABLE '(' table_or_view_name ',' containstable_columns
                 | OPENDATASOURCE '(' STRING ',' STRING ')'
                 | OPENQUERY '(' NAME ',' STRING ')'
                 | openrowset
+                | openxml
                 ;
+
+openxml : OPENXML '(' VARNAME ',' STRING ')'
+        | OPENXML '(' VARNAME ',' STRING ')' WITH '(' table_or_view_name ')'
+        | OPENXML '(' VARNAME ',' STRING ')' WITH '(' openxml_schema_declaration_list ')'
+        | OPENXML '(' VARNAME ',' STRING ',' INTEGER ')'
+        | OPENXML '(' VARNAME ',' STRING ',' INTEGER ')' WITH '(' table_or_view_name ')'
+        | OPENXML '(' VARNAME ',' STRING ',' INTEGER ')' WITH '(' openxml_schema_declaration_list ')'
+        ;
+
+openxml_schema_declaration_list : openxml_schema_declaration
+                                | openxml_schema_declaration_list ',' openxml_schema_declaration
+                                ;
+
+openxml_schema_declaration : NAME NAME
+                           | NAME NAME STRING
+                           | NAME NAME '(' INTEGER ')'
+                           | NAME NAME '(' INTEGER ')' STRING
+                           ;
 
 openrowset : OPENROWSET '(' STRING ',' STRING ',' STRING ')'
            | OPENROWSET '(' STRING ',' STRING ';' STRING ';' STRING ',' STRING ')'

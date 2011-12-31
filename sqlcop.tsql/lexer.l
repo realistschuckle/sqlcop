@@ -80,6 +80,7 @@ ISABOUT           [iI][sS][aA][bB][oO][uU][tT]
 WEIGHT            [wW][eE][iI][gG][hH][tT]
 
 NAME              [a-zA-Z_][a-zA-Z0-9_@#$]*
+VARNAME           @[a-zA-Z_][a-zA-Z0-9_@#$]*
 BRACES_NAME       \[[a-zA-Z_][^\]]*\]
 TEMP_TABLE_NAME   #{1,2}[a-zA-Z_][a-zA-Z0-9_@#$]*
 
@@ -175,6 +176,7 @@ BINARY            0x[0-9a-fA-F]*
 {WEIGHT}            { return T(Tokens.WEIGHT); }
 
 {NAME}              { return T(Tokens.NAME); }
+{VARNAME}           { return T(Tokens.VARNAME); }
 {BRACES_NAME}       { return T(Tokens.BRACES_NAME); }
 {TEMP_TABLE_NAME}   { return T(Tokens.TEMP_TABLE_NAME); }
 

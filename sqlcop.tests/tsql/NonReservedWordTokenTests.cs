@@ -27,6 +27,23 @@ namespace sqlcop.tests
 		}
 		
 		[Test]
+		public void Identifies_Variable_Name_Tokens()
+		{
+			_expectedToken = Tokens.VARNAME;
+			_inputs = new string[] {
+				"@TABLE",
+				"@TABLE_UNDERSCORE",
+				"@TableNum123",
+				"@table",
+				"@_table",
+				"@table$dollarsign",
+				"@table@atsign",
+				"@table#numbersign"
+			};
+			EnsureLexerRecognizesInputToken();
+		}
+		
+		[Test]
 		public void Identifies_Bracketed_Name_Tokens()
 		{
 			_expectedToken = Tokens.BRACES_NAME;
