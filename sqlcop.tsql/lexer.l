@@ -22,6 +22,7 @@ JOIN              [jJ][oO][iI][nN]
 LEFT              [lL][eE][fF][tT]
 LIKE              [lL][iI][kK][eE]
 NOT               [nN][oO][tT]
+ON                [oO][nN]
 OR                [oO][rR]
 ORDER             [oO][rR][dD][eE][rR]
 OUTER             [oO][uU][tT][eE][rR]
@@ -143,6 +144,7 @@ BINARY            0x[0-9a-fA-F]*
 {LEFT}              { return T(Tokens.LEFT); }
 {RIGHT}             { return T(Tokens.RIGHT); }
 {FULL}              { return T(Tokens.FULL); }
+{ON}                { return T(Tokens.ON); }
 
 {FASTFIRSTROW}      { return T(Tokens.FASTFIRSTROW); }
 {FORCESCAN}         { return T(Tokens.FORCESCAN); }

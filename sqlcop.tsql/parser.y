@@ -10,7 +10,7 @@
 
 %token ORDER ASC DESC UNIQUE
 
-%token CROSS JOIN OUTER APPLY INNER LEFT RIGHT FULL
+%token CROSS JOIN OUTER APPLY INNER LEFT RIGHT FULL ON
 
 %token FASTFIRSTROW FORCESCAN FORCESEEK HOLDLOCK INDEX NOEXPAND
 %token NOLOCK NOWAIT PAGLOCK READCOMMITTED READCOMMITTEDLOCK READPAST
@@ -48,7 +48,14 @@ row_source : table_or_view_name alias tablesample_modifier table_hints
            | rowset_function alias
            | '(' select ')' alias
            | '(' select ')' alias '(' braced_name_list ')'
+           | joined_tables
            ;
+
+joined_tables : table_or_view_name JOIN table_or_view_name ON search_condition
+              ;
+
+search_condition : expression
+                 ;
 
 rowset_function : CONTAINSTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'
                 | FREETEXTTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'
