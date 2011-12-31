@@ -124,6 +124,30 @@ namespace sqlcop.tests
 			Assert.That(_parser.Parse(), "Failed on " + input);
 		}
 		
+		[Test]
+		public void Recognizes_UDF_Invocation_For_Table()
+		{
+			string input = "select * from user_defined_fn(@var, 5 < 'a', 0x99)";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse(), "Failed on " + input);
+		}
+		
+		[Test]
+		public void Recognizes_Aliased_With_As_UDF_Invocation_For_Table()
+		{
+			string input = "select * from user_defined_fn(@var, 5 < 'a', 0x99) AS roo";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse(), "Failed on " + input);
+		}
+		
+		[Test]
+		public void Recognizes_Aliased_Without_As_UDF_Invocation_For_Table()
+		{
+			string input = "select * from user_defined_fn(@var, 5 < 'a', 0x99) roo";
+			_scanner.SetSource(input, 0);
+			Assert.That(_parser.Parse(), "Failed on " + input);
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{

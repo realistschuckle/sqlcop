@@ -52,6 +52,7 @@ rowset_function : CONTAINSTABLE '(' table_or_view_name ',' containstable_columns
                 | OPENQUERY '(' NAME ',' STRING ')'
                 | openrowset openrowset_column_aliases_opt
                 | openxml
+                | function_invocation
                 ;
 
 openxml : OPENXML '(' VARNAME ',' STRING ')'
