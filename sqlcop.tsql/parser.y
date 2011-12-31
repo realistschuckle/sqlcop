@@ -41,11 +41,9 @@ row_source : table_or_view_name alias tablesample_modifier table_hints
            | rowset_function
            ;
 
-rowset_function : containstable
+rowset_function : CONTAINSTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'
+                | FREETEXTTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'
                 ;
-
-containstable : CONTAINSTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'
-              ;
 
 containstable_columns : '*'
                       | NAME
