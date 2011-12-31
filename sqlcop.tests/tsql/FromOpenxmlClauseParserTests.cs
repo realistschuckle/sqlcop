@@ -116,7 +116,7 @@ namespace sqlcop.tests
 		[Test]
 		public void Recognizes_Flags_With_Homogenous_Compound_Column_List()
 		{
-			_input = "openxml(@idoc, '/some/path', 2) WITH (col varchar(33) 'path', col byte)";
+			_input = "openxml(@idoc, '/some/path', 2) WITH (col decimal(33, 27) 'path', col byte)";
 			CheckSelectStatement();
 		}
 		

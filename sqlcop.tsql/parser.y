@@ -66,10 +66,8 @@ openxml_schema_declaration_list : openxml_schema_declaration
                                 | openxml_schema_declaration_list ',' openxml_schema_declaration
                                 ;
 
-openxml_schema_declaration : NAME NAME
-                           | NAME NAME STRING
-                           | NAME NAME '(' INTEGER ')'
-                           | NAME NAME '(' INTEGER ')' STRING
+openxml_schema_declaration : NAME data_type
+                           | NAME data_type STRING
                            ;
 
 openrowset_column_aliases_opt : '(' braced_name_list ')'
@@ -265,6 +263,11 @@ signed_literal : S_INTEGER
                | S_FLOAT
                | S_MONEY
                ;
+
+data_type : NAME
+          | NAME '(' INTEGER ')'
+          | NAME '(' INTEGER ',' INTEGER ')'
+          ;
 
 %%
 
