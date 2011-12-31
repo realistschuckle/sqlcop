@@ -244,11 +244,14 @@ expression_atom : literal
                 | braced_name
                 | braced_name '.' braced_name
                 | braced_name '.' '*'
-                | NAME '(' method_arg_list ')'
+                | function_invocation
                 | VARNAME
                 | select_clause FROM table_or_view_name
                 | '(' select ')'
                 ;
+
+function_invocation : NAME '(' method_arg_list ')'
+                    ;
 
 literal : INTEGER
         | STRING
