@@ -3,20 +3,31 @@
 ALL               [aA][lL][lL]
 AND               [aA][nN][dD]
 ANY               [aA][nN][yY]
+APPLY             [aA][pP][pP][lL][yY]
 AS                [aA][sS]
+ASC               [aA][sS][cC]
 BETWEEN           [bB][eE][tT][wW][eE][eE][nN]
+CROSS             [cC][rR][oO][sS][sS]
+DESC              [dD][eE][sS][cC]
 DISTINCT          [dD][iI][sS][tT][iI][nN][cC][tT]
 EXCEPT            [eE][xX][cC][eE][pP][tT]
 EXISTS            [eE][xX][iI][sS][tT][sS]
 FROM              [fF][rR][oO][mM]
+FULL              [fF][uU][lL][lL]
 IN                [iI][nN]
+INNER             [iI][nN][nN][eE][rR]
 INTERSECT         [iI][nN][tT][eE][rR][sS][eE][cC][tT]
 INTO              [iI][nN][tT][oO]
+JOIN              [jJ][oO][iI][nN]
+LEFT              [lL][eE][fF][tT]
 LIKE              [lL][iI][kK][eE]
 NOT               [nN][oO][tT]
 OR                [oO][rR]
+ORDER             [oO][rR][dD][eE][rR]
+OUTER             [oO][uU][tT][eE][rR]
 PERCENT           [pP][eE][rR][cC][eE][nN][tT]
 REPEATABLE        [rR][eE][pP][eE][aA][tT][aA][bB][lL][eE]
+RIGHT             [rR][iI][gG][hH][tT]
 ROWS              [rR][oO][wW][sS]
 SELECT            [sS][eE][lL][eE][cC][tT]
 SOME              [sS][oO][mM][eE]
@@ -25,11 +36,8 @@ TABLESAMPLE       [tT][aA][bB][lL][eE][sS][aA][mM][pP][lL][eE]
 TIES              [tT][iI][eE][sS]
 TOP               [tT][oO][pP]
 UNION             [uU][nN][iI][oO][nN]
-WITH              [wW][iI][tT][hH]
-ORDER             [oO][rR][dD][eE][rR]
-ASC               [aA][sS][cC]
-DESC              [dD][eE][sS][cC]
 UNIQUE            [uU][nN][iI][qQ][uU][eE]
+WITH              [wW][iI][tT][hH]
 
 FASTFIRSTROW      [fF][aA][sS][tT][fF][iI][rR][sS][tT][rR][oO][wW]
 FORCESCAN         [fF][oO][rR][cC][eE][sS][cC][aA][nN]
@@ -127,6 +135,14 @@ BINARY            0x[0-9a-fA-F]*
 {ASC}               { return T(Tokens.ASC); }
 {DESC}              { return T(Tokens.DESC); }
 {UNIQUE}            { return T(Tokens.UNIQUE); }
+{CROSS}             { return T(Tokens.CROSS); }
+{JOIN}              { return T(Tokens.JOIN); }
+{OUTER}             { return T(Tokens.OUTER); }
+{APPLY}             { return T(Tokens.APPLY); }
+{INNER}             { return T(Tokens.INNER); }
+{LEFT}              { return T(Tokens.LEFT); }
+{RIGHT}             { return T(Tokens.RIGHT); }
+{FULL}              { return T(Tokens.FULL); }
 
 {FASTFIRSTROW}      { return T(Tokens.FASTFIRSTROW); }
 {FORCESCAN}         { return T(Tokens.FORCESCAN); }

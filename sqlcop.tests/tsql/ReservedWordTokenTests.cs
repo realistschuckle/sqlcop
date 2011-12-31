@@ -630,6 +630,77 @@ namespace sqlcop.tests
 			_eofToken = Tokens.EOF;
 		}
 		
+		[Test]
+		public void Identifies_Cross_With_Case_Sensitivity()
+		{
+			_inputToken = "cross";
+			_expectedToken = Tokens.CROSS;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Join_With_Case_Sensitivity()
+		{
+			_inputToken = "join";
+			_expectedToken = Tokens.JOIN;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Outer_With_Case_Sensitivity()
+		{
+			_inputToken = "outer";
+			_expectedToken = Tokens.OUTER;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Apply_With_Case_Sensitivity()
+		{
+			_inputToken = "apply";
+			_expectedToken = Tokens.APPLY;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Inner_With_Case_Sensitivity()
+		{
+			_inputToken = "inner";
+			_expectedToken = Tokens.INNER;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Left_With_Case_Sensitivity()
+		{
+			_inputToken = "left";
+			_expectedToken = Tokens.LEFT;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Right_With_Case_Sensitivity()
+		{
+			_inputToken = "right";
+			_expectedToken = Tokens.RIGHT;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Full_With_Case_Sensitivity()
+		{
+			_inputToken = "full";
+			_expectedToken = Tokens.FULL;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
 		private void EnsureLexerRecognizesInputTokenWithCaseInsensitivity()
 		{
 			int token = (int) _expectedToken;
