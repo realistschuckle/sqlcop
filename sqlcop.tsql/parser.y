@@ -49,7 +49,36 @@ rowset_function : CONTAINSTABLE '(' table_or_view_name ',' containstable_columns
                 | FREETEXTTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'
                 | OPENDATASOURCE '(' STRING ',' STRING ')'
                 | OPENQUERY '(' NAME ',' STRING ')'
+                | openrowset
                 ;
+
+openrowset : OPENROWSET '(' STRING ',' STRING ',' STRING ')'
+           | OPENROWSET '(' STRING ',' STRING ';' STRING ';' STRING ',' STRING ')'
+           | OPENROWSET '(' STRING ',' STRING ',' local_table_or_view_name ')'
+           | OPENROWSET '(' STRING ',' STRING ';' STRING ';' STRING ',' local_table_or_view_name ')'
+           | OPENROWSET '(' BULK STRING ',' SINGLE_BLOB ')'
+           | OPENROWSET '(' BULK STRING ',' SINGLE_CLOB ')'
+           | OPENROWSET '(' BULK STRING ',' SINGLE_NCLOB ')'
+           | OPENROWSET '(' BULK STRING ',' FORMATFILE '=' STRING bulk_options_list_opt ')'
+           ;
+
+bulk_options_list_opt : bulk_options_list
+                      |
+                      ;
+
+bulk_options_list : bulk_options
+                  | bulk_options_list bulk_options
+                  ;
+
+bulk_options : ',' CODEPAGE '=' STRING
+             | ',' ERRORFILE '=' STRING
+             | ',' FIRSTROW '=' INTEGER
+             | ',' LASTROW '=' INTEGER
+             | ',' MAXERRORS '=' INTEGER
+             | ',' ROWS_PER_BATCH '=' INTEGER
+             | ',' ORDER '(' braced_name_list ')'
+             | ',' ORDER '(' braced_name_list UNIQUE ')'
+             ;
 
 containstable_columns : '*'
                       | NAME
@@ -156,6 +185,9 @@ local_table_or_view_name : braced_name '.' braced_name '.' braced_name
                          | TEMP_TABLE_NAME
                          ;
 
+braced_name_list : braced_name
+                 | braced_name_list ',' braced_name
+                 ;
 
 braced_name : NAME
             | BRACES_NAME
