@@ -58,6 +58,7 @@ LANGUAGE          [lL][aA][nN][gG][uU][aA][gG][eE]
 OPENDATASOURCE    [oO][pP][eE][nN][dD][aA][tT][aA][sS][oO][uU][rR][cC][eE]
 OPENQUERY         [oO][pP][eE][nN][qQ][uU][eE][rR][yY]
 OPENROWSET        [oO][pP][eE][nN][rR][oO][wW][sS][eE][tT]
+OPENXML           [oO][pP][eE][nN][xX][mM][lL]
 
 BULK              [bB][uU][lL][kK]
 FORMATFILE        [fF][oO][rR][mM][aA][tT][fF][iI][lL][eE]
@@ -153,6 +154,7 @@ BINARY            0x[0-9a-fA-F]*
 {OPENDATASOURCE}    { return T(Tokens.OPENDATASOURCE); }
 {OPENQUERY}         { return T(Tokens.OPENQUERY); }
 {OPENROWSET}        { return T(Tokens.OPENROWSET); }
+{OPENXML}           { return T(Tokens.OPENXML); }
 {BULK}              { return T(Tokens.BULK); }
 {FORMATFILE}        { return T(Tokens.FORMATFILE); }
 {SINGLE_BLOB}       { return T(Tokens.SINGLE_BLOB); }

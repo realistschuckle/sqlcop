@@ -614,6 +614,14 @@ namespace sqlcop.tests
 			_expectedToken = Tokens.UNIQUE;
 			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
 		}
+
+		[Test]
+		public void Identifies_Openxml_With_Case_Sensitivity()
+		{
+			_inputToken = "openxml";
+			_expectedToken = Tokens.OPENXML;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
 		
 		[SetUp]
 		public void RunBeforeEachTest()
