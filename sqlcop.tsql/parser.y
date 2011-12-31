@@ -38,6 +38,7 @@ table_source_list : table_source
                   ;
 
 table_source : table_or_view_name alias tablesample_modifier table_hints
+             | CONTAINSTABLE '(' table_or_view_name ',' '*' ',' STRING ')'
              ;
 
 into_clause : INTO local_table_or_view_name
