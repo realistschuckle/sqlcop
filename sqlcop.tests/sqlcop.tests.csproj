@@ -54,6 +54,7 @@
     <Compile Include="tsql\FromFreetexttableClauseParserTests.cs" />
     <Compile Include="tsql\FromOpenrowsetClauseParserTests.cs" />
     <Compile Include="tsql\FromOpenxmlClauseParserTests.cs" />
+    <Compile Include="tsql\FromDerivedTableParserTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
