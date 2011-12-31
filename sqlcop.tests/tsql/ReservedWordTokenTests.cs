@@ -456,6 +456,14 @@ namespace sqlcop.tests
 			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
 		}
 		
+		[Test]
+		public void Identifies_Opendatasource_With_Case_Sensitivity()
+		{
+			_inputToken = "opendatasource";
+			_expectedToken = Tokens.OPENDATASOURCE;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
 		[SetUp]
 		public void RunBeforeEachTest()
 		{
