@@ -245,6 +245,7 @@ expression_atom : literal
                 | braced_name '.' braced_name
                 | braced_name '.' '*'
                 | NAME '(' method_arg_list ')'
+                | VARNAME
                 | select_clause FROM table_or_view_name
                 | '(' select ')'
                 ;

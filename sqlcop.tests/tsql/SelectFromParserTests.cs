@@ -264,6 +264,8 @@ namespace sqlcop.tests
 				"3 < 5",
 				"0x34 > 5",
 				"3 = '17'",
+				"0x34 > @var",
+				"@var = '17'",
 				"SELECT MAX(Col) FROM table",
 				"(SELECT MAX(Col) FROM table)",
 				"(SELECT MAX(Col) FROM table t)",
