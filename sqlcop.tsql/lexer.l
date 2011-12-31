@@ -26,6 +26,10 @@ TIES              [tT][iI][eE][sS]
 TOP               [tT][oO][pP]
 UNION             [uU][nN][iI][oO][nN]
 WITH              [wW][iI][tT][hH]
+ORDER             [oO][rR][dD][eE][rR]
+ASC               [aA][sS][cC]
+DESC              [dD][eE][sS][cC]
+UNIQUE            [uU][nN][iI][qQ][uU][eE]
 
 FASTFIRSTROW      [fF][aA][sS][tT][fF][iI][rR][sS][tT][rR][oO][wW]
 FORCESCAN         [fF][oO][rR][cC][eE][sS][cC][aA][nN]
@@ -53,6 +57,19 @@ FREETEXTTABLE     [fF][rR][eE][eE][tT][eE][xX][tT][tT][aA][bB][lL][eE]
 LANGUAGE          [lL][aA][nN][gG][uU][aA][gG][eE]
 OPENDATASOURCE    [oO][pP][eE][nN][dD][aA][tT][aA][sS][oO][uU][rR][cC][eE]
 OPENQUERY         [oO][pP][eE][nN][qQ][uU][eE][rR][yY]
+OPENROWSET        [oO][pP][eE][nN][rR][oO][wW][sS][eE][tT]
+
+BULK              [bB][uU][lL][kK]
+FORMATFILE        [fF][oO][rR][mM][aA][tT][fF][iI][lL][eE]
+SINGLE_BLOB       [sS][iI][nN][gG][lL][eE]_[bB][lL][oO][bB]
+SINGLE_CLOB       [sS][iI][nN][gG][lL][eE]_[cC][lL][oO][bB]
+SINGLE_NCLOB      [sS][iI][nN][gG][lL][eE]_[nN][cC][lL][oO][bB]
+CODEPAGE          [cC][oO][dD][eE][pP][aA][gG][eE]
+ERRORFILE         [eE][rR][rR][oO][rR][fF][iI][lL][eE]
+FIRSTROW          [fF][iI][rR][sS][tT][rR][oO][wW]
+LASTROW           [lL][aA][sS][tT][rR][oO][wW]
+MAXERRORS         [mM][aA][xX][eE][rR][rR][oO][rR][sS]
+ROWS_PER_BATCH    [rR][oO][wW][sS]_[pP][eE][rR]_[bB][aA][tT][cC][hH]
 
 FORMSOF           [fF][oO][rR][mM][sS][oO][fF]
 INFLECTIONAL      [iI][nN][fF][lL][eE][cC][tT][iI][oO][nN][aA][lL]
@@ -104,6 +121,10 @@ BINARY            0x[0-9a-fA-F]*
 {SYSTEM}            { return T(Tokens.SYSTEM); }
 {REPEATABLE}        { return T(Tokens.REPEATABLE); }
 {ROWS}              { return T(Tokens.ROWS); }
+{ORDER}             { return T(Tokens.ORDER); }
+{ASC}               { return T(Tokens.ASC); }
+{DESC}              { return T(Tokens.DESC); }
+{UNIQUE}            { return T(Tokens.UNIQUE); }
 
 {FASTFIRSTROW}      { return T(Tokens.FASTFIRSTROW); }
 {FORCESCAN}         { return T(Tokens.FORCESCAN); }
@@ -131,6 +152,18 @@ BINARY            0x[0-9a-fA-F]*
 {LANGUAGE}          { return T(Tokens.LANGUAGE); }
 {OPENDATASOURCE}    { return T(Tokens.OPENDATASOURCE); }
 {OPENQUERY}         { return T(Tokens.OPENQUERY); }
+{OPENROWSET}        { return T(Tokens.OPENROWSET); }
+{BULK}              { return T(Tokens.BULK); }
+{FORMATFILE}        { return T(Tokens.FORMATFILE); }
+{SINGLE_BLOB}       { return T(Tokens.SINGLE_BLOB); }
+{SINGLE_CLOB}       { return T(Tokens.SINGLE_CLOB); }
+{SINGLE_NCLOB}      { return T(Tokens.SINGLE_NCLOB); }
+{CODEPAGE}          { return T(Tokens.CODEPAGE); }
+{ERRORFILE}         { return T(Tokens.ERRORFILE); }
+{FIRSTROW}          { return T(Tokens.FIRSTROW); }
+{LASTROW}           { return T(Tokens.LASTROW); }
+{MAXERRORS}         { return T(Tokens.MAXERRORS); }
+{ROWS_PER_BATCH}    { return T(Tokens.ROWS_PER_BATCH); }
 
 {FORMSOF}           { return T(Tokens.FORMSOF); }
 {INFLECTIONAL}      { return T(Tokens.INFLECTIONAL); }

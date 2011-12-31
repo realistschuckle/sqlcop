@@ -471,6 +471,149 @@ namespace sqlcop.tests
 			_expectedToken = Tokens.OPENQUERY;
 			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
 		}
+
+		[Test]
+		public void Identifies_Openrowset_With_Case_Sensitivity()
+		{
+			_inputToken = "openrowset";
+			_expectedToken = Tokens.OPENROWSET;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Bulk_With_Case_Sensitivity()
+		{
+			_inputToken = "bulk";
+			_expectedToken = Tokens.BULK;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Formatfile_With_Case_Sensitivity()
+		{
+			_inputToken = "formatfile";
+			_expectedToken = Tokens.FORMATFILE;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Single_blob_With_Case_Sensitivity()
+		{
+			_inputToken = "single_blob";
+			_expectedToken = Tokens.SINGLE_BLOB;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Single_clob_With_Case_Sensitivity()
+		{
+			_inputToken = "single_clob";
+			_expectedToken = Tokens.SINGLE_CLOB;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Single_nclob_With_Case_Sensitivity()
+		{
+			_inputToken = "single_nclob";
+			_expectedToken = Tokens.SINGLE_NCLOB;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Codepage_With_Case_Sensitivity()
+		{
+			_inputToken = "codepage";
+			_expectedToken = Tokens.CODEPAGE;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Errorfile_With_Case_Sensitivity()
+		{
+			_inputToken = "errorfile";
+			_expectedToken = Tokens.ERRORFILE;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Firstrow_With_Case_Sensitivity()
+		{
+			_inputToken = "firstrow";
+			_expectedToken = Tokens.FIRSTROW;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Lastrow_With_Case_Sensitivity()
+		{
+			_inputToken = "lastrow";
+			_expectedToken = Tokens.LASTROW;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Maxerrors_With_Case_Sensitivity()
+		{
+			_inputToken = "maxerrors";
+			_expectedToken = Tokens.MAXERRORS;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Rows_per_batch_With_Case_Sensitivity()
+		{
+			_inputToken = "rows_per_batch";
+			_expectedToken = Tokens.ROWS_PER_BATCH;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Order_With_Case_Sensitivity()
+		{
+			_inputToken = "order";
+			_expectedToken = Tokens.ORDER;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Asc_With_Case_Sensitivity()
+		{
+			_inputToken = "asc";
+			_expectedToken = Tokens.ASC;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Desc_With_Case_Sensitivity()
+		{
+			_inputToken = "desc";
+			_expectedToken = Tokens.DESC;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
+		
+		
+		[Test]
+		public void Identifies_Unique_With_Case_Sensitivity()
+		{
+			_inputToken = "unique";
+			_expectedToken = Tokens.UNIQUE;
+			EnsureLexerRecognizesInputTokenWithCaseInsensitivity();
+		}
 		
 		[SetUp]
 		public void RunBeforeEachTest()
