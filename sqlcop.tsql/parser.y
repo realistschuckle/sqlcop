@@ -44,6 +44,8 @@ row_source_list : row_source
 
 row_source : table_or_view_name alias tablesample_modifier table_hints
            | rowset_function alias
+           | '(' select ')' alias
+           | '(' select ')' alias '(' braced_name_list ')'
            ;
 
 rowset_function : CONTAINSTABLE '(' table_or_view_name ',' containstable_columns ',' STRING language_opt ')'
